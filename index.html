@@ -1927,33 +1927,6 @@
           </div>
         </section>
 
-
-        <!-- COMPLETION SCREEN -->
-        <section id="completion" class="section hidden">
-          <div class="completion-screen">
-            <h2>✅ Questionnaire Complete!</h2>
-            <p>Great work! You've completed your individual assessment.</p>
-            
-            <div style="background: #f8f9ff; padding: 20px; border-radius: 8px; margin: 30px 0; text-align: left;">
-              <h3 style="margin-top: 0;">Next Steps:</h3>
-              <ol style="margin-left: 20px;">
-                <li><strong>Export your responses</strong> as JSON (saves all your answers)</li>
-                <li><strong>Your partner completes</strong> their questionnaire independently</li>
-                <li><strong>Schedule your joint planning session</strong> (recommend 3-4 hours)</li>
-                <li><strong>Load both JSON files</strong> in the Comparison Tool (coming soon)</li>
-                <li><strong>Review the Alignment Dashboard</strong> together</li>
-                <li><strong>Follow the Discussion Guide</strong> for your meeting</li>
-              </ol>
-            </div>
-
-            <div class="completion-actions">
-              <button type="button" class="btn-export" onclick="exportJSON()">📥 Export My Responses (JSON)</button>
-              <button type="button" class="btn-print" onclick="printFilled()">🖨️ Print Completed Form</button>
-              <button type="button" class="btn-print" onclick="printBlank()">📄 Print Blank Form</button>
-              <button type="button" class="btn-next" onclick="window.open('discussion-guide.html', '_blank')">📋 View Discussion Guide</button>
-            </div>
-          </div>
-
         <!-- CROSS-DOMAIN INTEGRATION -->
         <section id="cross_domain" class="section hidden">
           <h2>Cross-Domain Integration</h2>
@@ -2201,24 +2174,31 @@
           </div>
         </section>
 
-        <!-- COMPLETION SECTION -->
+        <!-- COMPLETION SCREEN -->
         <section id="completion" class="section hidden">
           <div class="completion-screen">
-            <h2>✓ Planning Session Complete!</h2>
-            <p>Thank you for completing your annual planning questionnaire.</p>
-            <p>Next Steps:</p>
-            <ol style="text-align: left; display: inline-block; margin: 20px 0;">
-              <li>Share your responses with your partner</li>
-              <li>Schedule your joint planning session</li>
-              <li>Export this form for your records</li>
-            </ol>
+            <h2>✅ Questionnaire Complete!</h2>
+            <p>Great work! You've completed your individual assessment.</p>
+            
+            <div style="background: #f8f9ff; padding: 20px; border-radius: 8px; margin: 30px 0; text-align: left;">
+              <h3 style="margin-top: 0;">Next Steps:</h3>
+              <ol style="margin-left: 20px;">
+                <li><strong>Export your responses</strong> as JSON (saves all your answers)</li>
+                <li><strong>Your partner completes</strong> their questionnaire independently</li>
+                <li><strong>Schedule your joint planning session</strong> (recommend 3-4 hours)</li>
+                <li><strong>Load both JSON files</strong> in the Comparison Tool (coming soon)</li>
+                <li><strong>Review the Alignment Dashboard</strong> together</li>
+                <li><strong>Follow the Discussion Guide</strong> for your meeting</li>
+              </ol>
+            </div>
+
             <div class="completion-actions">
-              <button type="button" class="btn-export" onclick="exportJSON()">📥 Export as JSON</button>
-              <button type="button" class="btn-print" onclick="printFilled()">🖨️ Print Form</button>
-              <button type="button" class="btn-export" onclick="resetForm()">🔄 Start Over</button>
+              <button type="button" class="btn-export" onclick="exportJSON()">📥 Export My Responses (JSON)</button>
+              <button type="button" class="btn-print" onclick="printFilled()">🖨️ Print Completed Form</button>
+              <button type="button" class="btn-print" onclick="printBlank()">📄 Print Blank Form</button>
+              <button type="button" class="btn-next" onclick="window.open('discussion-guide.html', '_blank')">📋 View Discussion Guide</button>
             </div>
           </div>
-        </section>
 
       </form>
     </main>
