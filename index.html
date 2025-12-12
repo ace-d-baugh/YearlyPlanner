@@ -829,9 +829,905 @@
           </div>
         </section>
 
-        <!-- NOTE: Additional domains would follow the same pattern as Domain 1 -->
-        <!-- For brevity in this demo, we're showing the structure with Domain 1 complete -->
-        <!-- In production, add Domains 2-6 following the same pattern from the questionnaire -->
+        <!-- DOMAIN 2: Physical Health and Fitness -->
+        <section id="domain2" class="section hidden">
+          <h2>Domain 2: Physical Health and Fitness</h2>
+          
+          <div class="domain-intro">
+            This domain covers exercise, nutrition, sleep, medical care, body image, energy levels, chronic conditions, and overall physical vitality.
+          </div>
+
+          <h3>A. Current State (Individual)</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your current overall physical health:</label>
+            <div class="range-container">
+              <input type="range" name="physical_health" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Poor Health</span>
+              <span>10 - Excellent Health</span>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Rate your current satisfaction with your fitness level:</label>
+            <div class="range-container">
+              <input type="range" name="physical_fitness_satisfaction" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Very Dissatisfied</span>
+              <span>10 - Very Satisfied</span>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> How much effort do you currently invest in physical health/fitness?</label>
+            <div class="range-container">
+              <input type="range" name="physical_effort" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - No Intentional Effort</span>
+              <span>10 - Major Daily Investment</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Do you have any chronic health conditions or concerns?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="physical_chronic" value="managed"> Yes, being managed</label>
+              <label><input type="radio" name="physical_chronic" value="unmanaged"> Yes, need attention but not addressing</label>
+              <label><input type="radio" name="physical_chronic" value="no"> No</label>
+            </div>
+            <textarea name="physical_chronic_details" placeholder="If yes, please describe" style="margin-top: 10px;"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Average hours of sleep per night:</label>
+            <input type="number" name="physical_sleep_hours" min="0" max="24" step="0.5" placeholder="e.g., 7.5">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your sleep quality:</label>
+            <div class="range-container">
+              <input type="range" name="physical_sleep_quality" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Poor/Disrupted</span>
+              <span>10 - Excellent/Restorative</span>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Current exercise frequency:</label>
+            <div class="radio-group">
+              <label><input type="radio" name="physical_exercise_freq" value="4plus"> 4+ times per week</label>
+              <label><input type="radio" name="physical_exercise_freq" value="2to3"> 2-3 times per week</label>
+              <label><input type="radio" name="physical_exercise_freq" value="once"> Once per week</label>
+              <label><input type="radio" name="physical_exercise_freq" value="rarely"> Rarely/never</label>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> What are your primary pain points or frustrations with physical health?</label>
+            <textarea name="physical_frustrations"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> What are recent wins or progress in physical health?</label>
+            <textarea name="physical_wins"></textarea>
+          </div>
+
+          <h3>B. Current State (Partner Awareness)</h3>
+
+          <div class="prediction-note">
+            💡 Predicting your partner's physical health satisfaction and concerns
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How satisfied do you think YOUR PARTNER is with their physical health?</label>
+            <div class="range-container">
+              <input type="range" name="physical_partner_health" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What do you think your partner would say is their biggest health frustration?</label>
+            <textarea name="physical_partner_frustration"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate how aligned you are as a couple in supporting each other's health goals:</label>
+            <div class="range-container">
+              <input type="range" name="physical_alignment" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Not Aligned</span>
+              <span>10 - Very Aligned</span>
+            </div>
+          </div>
+
+          <h3>C. Future Vision</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Personal physical health goal (1-Year):</label>
+            <textarea name="physical_personal_1yr"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Personal physical health goal (5-Year):</label>
+            <textarea name="physical_personal_5yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Couple health/fitness goal (1-Year):</label>
+            <textarea name="physical_couple_1yr" placeholder="e.g., cook healthy meals together, train for event, establish active lifestyle"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Couple health/fitness goal (5-Year):</label>
+            <textarea name="physical_couple_5yr"></textarea>
+          </div>
+
+          <h3>D. Obstacles & Resources</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What support do you need from your partner for your health goals?</label>
+            <textarea name="physical_partner_support"></textarea>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('domain1')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('domain3')">Next: Domain 3 →</button>
+          </div>
+        </section>
+
+        <!-- DOMAIN 3: Professional Life and Career -->
+        <section id="domain3" class="section hidden">
+          <h2>Domain 3: Professional Life and Career</h2>
+          
+          <div class="domain-intro">
+            This domain covers career satisfaction, advancement goals, work-life balance, professional development, income expectations, and potential career changes.
+          </div>
+
+          <h3>A. Current State (Individual)</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your current career/professional satisfaction:</label>
+            <div class="range-container">
+              <input type="range" name="career_satisfaction" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Very Dissatisfied</span>
+              <span>10 - Very Satisfied</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your current work-life balance:</label>
+            <div class="range-container">
+              <input type="range" name="career_worklife_balance" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Very Imbalanced</span>
+              <span>10 - Excellent Balance</span>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> How much effort are you investing in career development?</label>
+            <div class="range-container">
+              <input type="range" name="career_effort" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Average hours worked per week:</label>
+            <input type="number" name="career_hours_week" min="0" max="168" placeholder="e.g., 40">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Do you anticipate any major career changes in the next 5 years?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="career_changes" value="promotion"> Yes - promotion/advancement within current field</label>
+              <label><input type="radio" name="career_changes" value="career_change"> Yes - career change/new field</label>
+              <label><input type="radio" name="career_changes" value="entrepreneurship"> Yes - considering entrepreneurship/starting business</label>
+              <label><input type="radio" name="career_changes" value="leaving"> Yes - considering leaving workforce/retirement</label>
+              <label><input type="radio" name="career_changes" value="relocation"> Yes - relocation for career</label>
+              <label><input type="radio" name="career_changes" value="no"> No major changes anticipated</label>
+              <label><input type="radio" name="career_changes" value="uncertain"> Uncertain</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> If a major career opportunity required relocation, would you want to pursue it?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="career_relocation" value="yes_definitely"> Yes, definitely</label>
+              <label><input type="radio" name="career_relocation" value="yes_if_agree"> Yes, if partner agrees</label>
+              <label><input type="radio" name="career_relocation" value="only_if_equal"> Only if partner has equal opportunity there</label>
+              <label><input type="radio" name="career_relocation" value="probably_not"> Probably not</label>
+              <label><input type="radio" name="career_relocation" value="definitely_not"> Definitely not</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What are your primary career frustrations or pain points?</label>
+            <textarea name="career_frustrations"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> What are recent career wins or progress?</label>
+            <textarea name="career_wins"></textarea>
+          </div>
+
+          <h3>B. Current State (Partner Awareness)</h3>
+
+          <div class="prediction-note">
+            💡 Predicting your partner's career satisfaction and aspirations
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How satisfied do you think YOUR PARTNER is with their career?</label>
+            <div class="range-container">
+              <input type="range" name="career_partner_satisfaction" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What do you think your partner's biggest career frustration is?</label>
+            <textarea name="career_partner_frustration"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate how aligned you are in supporting each other's career goals:</label>
+            <div class="range-container">
+              <input type="range" name="career_alignment" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <h3>C. Future Vision</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Personal career goal (1-Year):</label>
+            <textarea name="career_personal_1yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Personal career goal (5-Year):</label>
+            <textarea name="career_personal_5yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How should we balance career ambitions with family/relationship needs in the next 1-5 years?</label>
+            <textarea name="career_balance_approach"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> If I achieve my career goals, what might I need to sacrifice or what might we need to accommodate as a couple?</label>
+            <textarea name="career_sacrifices"></textarea>
+          </div>
+
+          <h3>D. Obstacles & Resources</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What support do you need from your partner for your career goals?</label>
+            <textarea name="career_partner_support"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Trade-off question: If achieving your career goal required significantly less family time, would you still pursue it?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="career_tradeoff" value="yes_priority"> Yes, career is priority</label>
+              <label><input type="radio" name="career_tradeoff" value="yes_guilt"> Yes, but with guilt/concern</label>
+              <label><input type="radio" name="career_tradeoff" value="only_temp"> Only if temporary</label>
+              <label><input type="radio" name="career_tradeoff" value="no"> No, family time is non-negotiable</label>
+            </div>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('domain2')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('domain4')">Next: Domain 4 (Financial) →</button>
+          </div>
+        </section>
+
+        <!-- DOMAIN 4: Financial Life (EXTENDED SECTION) -->
+        <section id="domain4" class="section hidden">
+          <h2>Domain 4: Financial Life and Material Well-being</h2>
+          
+          <div class="domain-intro">
+            This domain covers income, expenses, debt, savings, investments, retirement, financial decision-making, money beliefs, and material lifestyle expectations. <strong>Research shows this is often the most sensitive domain—please answer honestly as misalignment here predicts significant relationship conflict.</strong>
+          </div>
+
+          <h3>A. Current Financial Reality</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Current combined annual household income (before taxes):</label>
+            <input type="number" name="finance_income" placeholder="$" min="0">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Total assets (savings, investments, home equity, etc.):</label>
+            <input type="number" name="finance_assets" placeholder="$" min="0">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Total debts (mortgage, student loans, credit cards, auto, etc.):</label>
+            <input type="number" name="finance_debts" placeholder="$" min="0">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Monthly essential expenses (housing, utilities, food, insurance, etc.):</label>
+            <input type="number" name="finance_essentials" placeholder="$" min="0">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Monthly discretionary spending (entertainment, dining out, hobbies, etc.):</label>
+            <input type="number" name="finance_discretionary" placeholder="$" min="0">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your current financial stress level:</label>
+            <div class="range-container">
+              <input type="range" name="finance_stress" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - No Financial Stress</span>
+              <span>10 - Extreme Financial Stress</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your satisfaction with current financial situation:</label>
+            <div class="range-container">
+              <input type="range" name="finance_satisfaction" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <h3>B. Money Scripts & Background</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What were the primary messages about money you learned growing up?</label>
+            <textarea name="finance_childhood_messages"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Describe your parents' relationship with money in 2-3 sentences:</label>
+            <textarea name="finance_parents_money"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What's your earliest money memory?</label>
+            <textarea name="finance_earliest_memory"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> On a scale of 1-7, rate your comfort with debt:</label>
+            <div class="range-container">
+              <input type="range" name="finance_debt_comfort" min="1" max="7" value="4" oninput="updateRangeDisplay(this)">
+              <span class="range-value">4</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Debt is dangerous/avoid</span>
+              <span>7 - Debt is a tool/embrace</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Complete this sentence: "Money is primarily for..."</label>
+            <div class="radio-group">
+              <label><input type="radio" name="finance_money_for" value="security"> Security and safety</label>
+              <label><input type="radio" name="finance_money_for" value="freedom"> Freedom and experiences</label>
+              <label><input type="radio" name="finance_money_for" value="status"> Status and success</label>
+              <label><input type="radio" name="finance_money_for" value="generosity"> Generosity and helping others</label>
+              <label><input type="radio" name="finance_money_for" value="other"> Other: <input type="text" name="finance_money_for_other" style="display:inline; width:200px;"></label>
+            </div>
+          </div>
+
+          <h3>C. Decision-Making & Transparency</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> At what dollar amount do you feel you should consult your partner before spending?</label>
+            <input type="number" name="finance_consult_amount" placeholder="$" min="0">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Partners should have:</label>
+            <div class="radio-group">
+              <label><input type="radio" name="finance_accounts" value="fully_joint"> Fully joint accounts (all money combined)</label>
+              <label><input type="radio" name="finance_accounts" value="mostly_joint"> Mostly joint with small separate "fun money" accounts</label>
+              <label><input type="radio" name="finance_accounts" value="separate_joint_bills"> Separate accounts with joint account for bills</label>
+              <label><input type="radio" name="finance_accounts" value="fully_separate"> Fully separate accounts</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How much financial privacy should partners have?</label>
+            <div class="range-container">
+              <input type="range" name="finance_privacy" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Complete Transparency</span>
+              <span>10 - Significant Privacy is Healthy</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Have you ever hidden a purchase or debt from your partner?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="finance_hidden" value="yes"> Yes</label>
+              <label><input type="radio" name="finance_hidden" value="no"> No</label>
+              <label><input type="radio" name="finance_hidden" value="prefer_not"> Prefer not to answer</label>
+            </div>
+            <textarea name="finance_hidden_explain" placeholder="Optional explanation" style="margin-top: 10px;"></textarea>
+          </div>
+
+          <h3>D. Risk Tolerance & Investment Philosophy</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your investment risk tolerance:</label>
+            <div class="range-container">
+              <input type="range" name="finance_risk_tolerance" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Very Conservative</span>
+              <span>10 - Very Aggressive</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What percentage of investments should be in: (must total 100%)</label>
+            <div class="percentage-group">
+              <div class="percentage-item">
+                <label>Stocks:</label>
+                <input type="number" name="finance_invest_stocks" min="0" max="100" value="0" oninput="validatePercentages('finance_invest')">%
+              </div>
+              <div class="percentage-item">
+                <label>Bonds:</label>
+                <input type="number" name="finance_invest_bonds" min="0" max="100" value="0" oninput="validatePercentages('finance_invest')">%
+              </div>
+              <div class="percentage-item">
+                <label>Real Estate:</label>
+                <input type="number" name="finance_invest_realestate" min="0" max="100" value="0" oninput="validatePercentages('finance_invest')">%
+              </div>
+              <div class="percentage-item">
+                <label>Cash/Savings:</label>
+                <input type="number" name="finance_invest_cash" min="0" max="100" value="0" oninput="validatePercentages('finance_invest')">%
+              </div>
+            </div>
+            <div class="percentage-error" id="finance_invest_error"></div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> I believe in:</label>
+            <div class="radio-group">
+              <label><input type="radio" name="finance_invest_style" value="active"> Actively managing investments (picking stocks, timing market)</label>
+              <label><input type="radio" name="finance_invest_style" value="passive"> Passive index investing (set it and forget it)</label>
+              <label><input type="radio" name="finance_invest_style" value="advisor"> Using professional financial advisors</label>
+              <label><input type="radio" name="finance_invest_style" value="minimal"> Minimal investing (prioritize safety/savings)</label>
+            </div>
+          </div>
+
+          <h3>E. Retirement & Long-Term Planning</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> At what age do you want to retire?</label>
+            <input type="number" name="finance_retire_age" min="18" max="100" placeholder="Age">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What annual retirement income would you need to feel comfortable?</label>
+            <input type="number" name="finance_retire_income" placeholder="$ per year" min="0">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Retirement planning should be:</label>
+            <div class="radio-group">
+              <label><input type="radio" name="finance_retire_priority" value="top"> Top priority now (maximize savings even if less enjoyment today)</label>
+              <label><input type="radio" name="finance_retire_priority" value="balanced"> Balanced with present enjoyment (save adequately but live well now)</label>
+              <label><input type="radio" name="finance_retire_priority" value="later"> Something to worry about later (prioritize present quality of life)</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How much should we be saving monthly for retirement?</label>
+            <input type="number" name="finance_retire_monthly" placeholder="$ per month" min="0">
+          </div>
+
+          <h3>F. Spending Philosophy & Fun Money</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What percentage of income should go to: (must total 100%)</label>
+            <div class="percentage-group">
+              <div class="percentage-item">
+                <label>Savings/Investments:</label>
+                <input type="number" name="finance_split_savings" min="0" max="100" value="0" oninput="validatePercentages('finance_split')">%
+              </div>
+              <div class="percentage-item">
+                <label>Necessities:</label>
+                <input type="number" name="finance_split_necessities" min="0" max="100" value="0" oninput="validatePercentages('finance_split')">%
+              </div>
+              <div class="percentage-item">
+                <label>Fun/Discretionary:</label>
+                <input type="number" name="finance_split_fun" min="0" max="100" value="0" oninput="validatePercentages('finance_split')">%
+              </div>
+            </div>
+            <div class="percentage-error" id="finance_split_error"></div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Each partner should have how much individual "no questions asked" fun money per month?</label>
+            <input type="number" name="finance_fun_money" placeholder="$ per month per person" min="0">
+          </div>
+
+          <h3>G. Extended Family & Obligations</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What financial obligations do you expect toward your parents/family?</label>
+            <textarea name="finance_family_obligations"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How much would you be comfortable loaning/giving to family members?</label>
+            <input type="number" name="finance_family_amount" placeholder="$" min="0">
+          </div>
+
+          <h3>H. Partner Awareness</h3>
+
+          <div class="prediction-note">
+            💡 Predicting your partner's financial views and satisfaction
+          </div>
+
+          <!--  *******************************
+                * FILL THIS SECTION OUT
+                *******************************-->
+
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> STILL NEEDS FILLING OUT</label>
+            <div class="range-container mandatory              <input type="range" name="finance_partner_views" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+                <!-- DOMAIN 5: Relationships and Social Life -->
+        <section id="domain5" class="section hidden">
+          <h2>Domain 5: Relationships and Social Life</h2>
+          
+          <div class="domain-intro">
+            This domain covers friendships, family relationships, social activities, time together vs. apart, extended family involvement, and social lifestyle preferences.
+          </div>
+
+          <h3>A. Current State (Individual)</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your satisfaction with amount of quality time together as a couple:</label>
+            <div class="range-container">
+              <input type="range" name="social_couple_time" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Nowhere Near Enough</span>
+              <span>10 - Perfect Amount</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your satisfaction with amount of individual/alone time:</label>
+            <div class="range-container">
+              <input type="range" name="social_alone_time" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Nowhere Near Enough</span>
+              <span>10 - Perfect Amount</span>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Rate your satisfaction with your friendships and social connections:</label>
+            <div class="range-container">
+              <input type="range" name="social_friendships" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> How much effort do you invest in maintaining friendships?</label>
+            <div class="range-container">
+              <input type="range" name="social_friendship_effort" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How often do you need social activities / time with friends?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="social_frequency" value="multiple"> Multiple times per week</label>
+              <label><input type="radio" name="social_frequency" value="weekly"> Once per week</label>
+              <label><input type="radio" name="social_frequency" value="2to3"> 2-3 times per month</label>
+              <label><input type="radio" name="social_frequency" value="monthly"> Once per month</label>
+              <label><input type="radio" name="social_frequency" value="rarely"> Rarely / I'm an introvert</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How involved should extended family be in our lives?</label>
+            <div class="range-container">
+              <input type="range" name="social_family_involvement" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Minimal Contact</span>
+              <span>10 - Very Integrated/Frequent</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Current pain points in relationships/social domain:</label>
+            <textarea name="social_frustrations"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Recent wins in relationships/social domain:</label>
+            <textarea name="social_wins"></textarea>
+          </div>
+
+          <h3>B. Current State (Partner Awareness)</h3>
+
+          <div class="prediction-note">
+            💡 Predicting your partner's social and relationship needs
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How satisfied do you think YOUR PARTNER is with the amount of quality couple time?</label>
+            <div class="range-container">
+              <input type="range" name="social_partner_couple_time" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How satisfied do you think YOUR PARTNER is with their amount of alone time?</label>
+            <div class="range-container">
+              <input type="range" name="social_partner_alone_time" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What do you think your partner would say is their biggest relationship/social frustration?</label>
+            <textarea name="social_partner_frustration"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your alignment on social lifestyle preferences:</label>
+            <div class="range-container">
+              <input type="range" name="social_alignment" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <h3>C. Future Vision</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How should we balance couple time, individual time, and social time in the next year?</label>
+            <textarea name="social_balance"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What boundaries do we need with extended family?</label>
+            <textarea name="social_family_boundaries"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Personal relationship goal (1-Year):</label>
+            <textarea name="social_personal_1yr" placeholder="e.g., deepen friendships, establish boundaries, reconnect with old friends"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Couple relationship goal (1-Year):</label>
+            <textarea name="social_couple_1yr" placeholder="e.g., weekly date nights, annual trips, establish traditions"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Couple relationship goal (5-Year):</label>
+            <textarea name="social_couple_5yr"></textarea>
+          </div>
+
+          <h3>D. Obstacles & Resources</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What support do you need from your partner in this domain?</label>
+            <textarea name="social_partner_support"></textarea>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('domain4')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('domain6')">Next: Domain 6 →</button>
+          </div>
+        </section>
+
+        <!-- DOMAIN 6: Spiritual and Intellectual Life -->
+        <section id="domain6" class="section hidden">
+          <h2>Domain 6: Spiritual and Intellectual Life</h2>
+          
+          <div class="domain-intro">
+            This domain covers religious/spiritual beliefs, personal growth, learning, values, ethics, meaning/purpose, cultural identity, and intellectual engagement.
+          </div>
+
+          <h3>A. Current State (Individual)</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your satisfaction with your spiritual/religious life:</label>
+            <div class="range-container">
+              <input type="range" name="spiritual_satisfaction" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Very Dissatisfied</span>
+              <span>10 - Very Satisfied</span>
+            </div>
+            <label style="margin-top: 10px;"><input type="checkbox" name="spiritual_na"> N/A (not applicable to me)</label>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Rate your satisfaction with your intellectual growth and learning:</label>
+            <div class="range-container">
+              <input type="range" name="spiritual_intellectual" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> How much effort do you invest in personal growth, learning, or spiritual practice?</label>
+            <div class="range-container">
+              <input type="range" name="spiritual_effort" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How important is religious/spiritual practice to you?</label>
+            <div class="range-container">
+              <input type="range" name="spiritual_importance" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Not Important</span>
+              <span>10 - Central to My Identity</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How important is it that your partner shares your religious/spiritual beliefs?</label>
+            <div class="range-container">
+              <input type="range" name="spiritual_partner_sharing" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Not Important</span>
+              <span>10 - Absolutely Essential</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> If you have/plan to have children, how should we raise them regarding religion/spirituality?</label>
+            <textarea name="spiritual_children"></textarea>
+            <label style="margin-top: 10px;"><input type="checkbox" name="spiritual_children_na"> N/A (no children planned)</label>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What are your core values? (List top 3-5)</label>
+            <div style="margin-top: 10px;">
+              <input type="text" name="spiritual_value1" placeholder="Value 1 (e.g., integrity, family, growth)" style="margin-bottom: 10px;">
+              <input type="text" name="spiritual_value2" placeholder="Value 2" style="margin-bottom: 10px;">
+              <input type="text" name="spiritual_value3" placeholder="Value 3" style="margin-bottom: 10px;">
+              <input type="text" name="spiritual_value4" placeholder="Value 4 (optional)" style="margin-bottom: 10px;">
+              <input type="text" name="spiritual_value5" placeholder="Value 5 (optional)">
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Which values are non-negotiable for you (i.e., dealbreakers if violated)?</label>
+            <textarea name="spiritual_dealbreaker_values"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> What gives your life meaning and purpose?</label>
+            <textarea name="spiritual_meaning"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Current frustrations in spiritual/intellectual domain:</label>
+            <textarea name="spiritual_frustrations"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Recent wins in spiritual/intellectual domain:</label>
+            <textarea name="spiritual_wins"></textarea>
+          </div>
+
+          <h3>B. Current State (Partner Awareness)</h3>
+
+          <div class="prediction-note">
+            💡 Predicting your partner's values and spiritual/intellectual life
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How satisfied do you think YOUR PARTNER is with their spiritual/intellectual life?</label>
+            <div class="range-container">
+              <input type="range" name="spiritual_partner_satisfaction" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What do you think YOUR PARTNER'S top 3 core values are?</label>
+            <div style="margin-top: 10px;">
+              <input type="text" name="spiritual_partner_value1" placeholder="Partner's Value 1" style="margin-bottom: 10px;">
+              <input type="text" name="spiritual_partner_value2" placeholder="Partner's Value 2" style="margin-bottom: 10px;">
+              <input type="text" name="spiritual_partner_value3" placeholder="Partner's Value 3">
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your alignment on core values and life philosophy:</label>
+            <div class="range-container">
+              <input type="range" name="spiritual_alignment" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <h3>C. Future Vision</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Personal spiritual/intellectual goal (1-Year):</label>
+            <textarea name="spiritual_personal_1yr"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Personal spiritual/intellectual goal (5-Year):</label>
+            <textarea name="spiritual_personal_5yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> As a couple, what shared meaning or purpose should we cultivate in the next 1-5 years?</label>
+            <textarea name="spiritual_couple_meaning"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Couple goal for this domain (1-Year):</label>
+            <textarea name="spiritual_couple_1yr"></textarea>
+          </div>
+
+          <h3>D. Obstacles & Resources</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What support do you need from your partner in this domain?</label>
+            <textarea name="spiritual_partner_support"></textarea>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('domain5')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('cross_domain')">Next: Integration →</button>
+          </div>
+        </section>
+
 
         <!-- COMPLETION SCREEN -->
         <section id="completion" class="section hidden">
@@ -858,3 +1754,234 @@
               <button type="button" class="btn-next" onclick="window.open('discussion-guide.html', '_blank')">📋 View Discussion Guide</button>
             </div>
           </div>
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How satisfied do you think YOUR PARTNER is with our financial situation?</label>
+            <div class="range-container">
+              <input type="range" name="finance_partner_satisfaction" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What do you think YOUR PARTNER'S biggest financial concern is?</label>
+            <textarea name="finance_partner_concern"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your alignment as a couple on financial matters:</label>
+            <div class="range-container">
+              <input type="range" name="finance_alignment" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Major Misalignment</span>
+              <span>10 - Perfectly Aligned</span>
+            </div>
+          </div>
+
+          <h3>I. Financial Goals</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Personal financial goal (1-Year):</label>
+            <textarea name="finance_personal_1yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Personal financial goal (5-Year):</label>
+            <textarea name="finance_personal_5yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Couple financial goal (1-Year):</label>
+            <textarea name="finance_couple_1yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Couple financial goal (5-Year):</label>
+            <textarea name="finance_couple_5yr"></textarea>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('domain3')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('domain5')">Next: Domain 5 →</button>
+          </div>
+        </section>
+
+
+        <!-- CROSS-DOMAIN INTEGRATION -->
+        <section id="cross_domain" class="section hidden">
+          <h2>Cross-Domain Integration</h2>
+          
+          <div class="domain-intro">
+            These questions help you see how the six domains relate to each other and identify patterns in your priorities and investments.
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rank the six domains in order of current importance to you (1=most important):</label>
+            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+              <p style="margin-bottom: 10px; font-size: 14px; color: #666;">Drag to reorder or enter numbers 1-6</p>
+              <div style="display: grid; gap: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_importance_mental" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Mental and Emotional Well-being</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_importance_physical" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Physical Health and Fitness</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_importance_career" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Professional Life and Career</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_importance_financial" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Financial Life and Material Well-being</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_importance_social" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Relationships and Social Life</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_importance_spiritual" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Spiritual and Intellectual Life</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rank the six domains in order of where you currently invest the most time/energy (1=most time/energy):</label>
+            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+              <div style="display: grid; gap: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_effort_mental" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Mental and Emotional Well-being</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_effort_physical" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Physical Health and Fitness</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_effort_career" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Professional Life and Career</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_effort_financial" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Financial Life and Material Well-being</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_effort_social" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Relationships and Social Life</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="rank_effort_spiritual" min="1" max="6" placeholder="Rank" style="width: 60px;">
+                  <span>Spiritual and Intellectual Life</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Which domain needs the most improvement in YOUR life?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="needs_improvement_personal" value="mental"> Mental and Emotional</label>
+              <label><input type="radio" name="needs_improvement_personal" value="physical"> Physical Health</label>
+              <label><input type="radio" name="needs_improvement_personal" value="career"> Professional/Career</label>
+              <label><input type="radio" name="needs_improvement_personal" value="financial"> Financial</label>
+              <label><input type="radio" name="needs_improvement_personal" value="social"> Relationships/Social</label>
+              <label><input type="radio" name="needs_improvement_personal" value="spiritual"> Spiritual/Intellectual</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Which domain needs the most improvement in OUR RELATIONSHIP?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="needs_improvement_couple" value="mental"> Mental and Emotional</label>
+              <label><input type="radio" name="needs_improvement_couple" value="physical"> Physical Health</label>
+              <label><input type="radio" name="needs_improvement_couple" value="career"> Professional/Career</label>
+              <label><input type="radio" name="needs_improvement_couple" value="financial"> Financial</label>
+              <label><input type="radio" name="needs_improvement_couple" value="social"> Relationships/Social</label>
+              <label><input type="radio" name="needs_improvement_couple" value="spiritual"> Spiritual/Intellectual</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> If you could only make significant progress in ONE domain this year, which would it be?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="top_priority" value="mental"> Mental and Emotional</label>
+              <label><input type="radio" name="top_priority" value="physical"> Physical Health</label>
+              <label><input type="radio" name="top_priority" value="career"> Professional/Career</label>
+              <label><input type="radio" name="top_priority" value="financial"> Financial</label>
+              <label><input type="radio" name="top_priority" value="social"> Relationships/Social</label>
+              <label><input type="radio" name="top_priority" value="spiritual"> Spiritual/Intellectual</label>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Which domain are you most satisfied with currently?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="most_satisfied" value="mental"> Mental and Emotional</label>
+              <label><input type="radio" name="most_satisfied" value="physical"> Physical Health</label>
+              <label><input type="radio" name="most_satisfied" value="career"> Professional/Career</label>
+              <label><input type="radio" name="most_satisfied" value="financial"> Financial</label>
+              <label><input type="radio" name="most_satisfied" value="social"> Relationships/Social</label>
+              <label><input type="radio" name="most_satisfied" value="spiritual"> Spiritual/Intellectual</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Is there significant misalignment between what you value (importance ranking) and where you invest effort?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="value_effort_misalignment" value="yes_bothers"> Yes, and this bothers me</label>
+              <label><input type="radio" name="value_effort_misalignment" value="yes_temporary"> Yes, but this is temporary / necessary for now</label>
+              <label><input type="radio" name="value_effort_misalignment" value="no"> No, pretty well aligned</label>
+            </div>
+            <textarea name="value_effort_explanation" placeholder="Optional explanation" style="margin-top: 10px;"></textarea>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('domain6')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('goals')">Next: Goal Synthesis →</button>
+          </div>
+        </section>
+
+        <!-- GOAL SYNTHESIS SECTION -->
+        <section id="goals" class="section hidden">
+          <h2>Goal Synthesis & Action Planning</h2>
+          
+          <div class="domain-intro">
+            Now that you've reflected on all six domains, it's time to synthesize your insights into concrete, actionable goals. Focus on quality over quantity - it's better to achieve 3 goals than to start 10 and abandon them.
+          </div>
+
+          <div class="alert">
+            <strong>📊 Research Insight:</strong> People who write down specific goals with action steps are 42% more likely to achieve them than those who just think about what they want.
+          </div>
+
+          <h3>Top 3 Personal Goals (1-Year)</h3>
+
+          <!-- Personal Goal 1 -->
+          <div class="card" style="background: #fff; border: 2px solid #667eea; margin: 20px 0;">
+            <h4 style="margin-top: 0; color: #667eea;">Personal Goal #1 (1-Year)</h4>
+            
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Goal Statement:</label>
+              <textarea name="goal_personal1_1yr_statement" placeholder="What do you want to achieve?"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Why this matters to me:</label>
+              <textarea name="goal_personal1_1yr_why"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Specific Measurable Outcome (What does success look like?):</label>
+              <textarea name="goal_personal1_1yr_outcome"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('reflection')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('domain2')">Next: Domain 2 →</button>
+          </div>
+        </section>
+
