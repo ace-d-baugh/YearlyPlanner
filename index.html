@@ -2293,24 +2293,70 @@
       }
     }
 
-    // Update progress bar based on filled fields
+    // Update progress bar based on filled fields across entire form
     function updateProgressBar() {
       const form = document.getElementById('planningForm');
-      const inputs = form.querySelectorAll('input, textarea');
-      let filled = 0;
       
-      inputs.forEach(input => {
-        if (input.value.trim() !== '') {
-          filled++;
+      // Get all form elements
+      const allInputs = form.querySelectorAll('input, textarea, select');
+      let totalFields = 0;
+      let filledFields = 0;
+      
+      // Track which radio/checkbox groups we've already counted
+      const radioCheckboxGroups = new Set();
+      
+      allInputs.forEach(input => {
+        // Skip hidden inputs and file inputs
+        if (input.type === 'hidden' || input.type === 'file') {
+          return;
+        }
+        
+        // Handle radio buttons and checkboxes - count the group once
+        if (input.type === 'radio' || input.type === 'checkbox') {
+          const groupKey = input.name;
+          
+          // Skip if we've already counted this group
+          if (radioCheckboxGroups.has(groupKey)) {
+            return;
+          }
+          
+          radioCheckboxGroups.add(groupKey);
+          totalFields++;
+          
+          // Check if any radio/checkbox in this group is checked
+          const groupElements = form.querySelectorAll(`[name="${groupKey}"]`);
+          let isChecked = false;
+          groupElements.forEach(el => {
+            if (el.checked) {
+              isChecked = true;
+            }
+          });
+          
+          if (isChecked) {
+            filledFields++;
+          }
+        } else {
+          // For text inputs, textareas, number inputs, range inputs, etc.
+          totalFields++;
+          
+          // Check if field has a value
+          if (input.value && input.value.trim() !== '') {
+            filledFields++;
+          }
         }
       });
       
-      const percentage = Math.round((filled / inputs.length) * 100);
+      // Calculate percentage
+      const percentage = totalFields > 0 ? Math.round((filledFields / totalFields) * 100) : 0;
+      
+      // Update progress bar
       const progressBar = document.getElementById('progressBar');
       const progressText = document.getElementById('progressText');
       
-      progressBar.style.width = percentage + '%';
-      progressText.textContent = percentage + '% Complete';
+      if (progressBar && progressText) {
+        progressBar.style.width = percentage + '%';
+        progressText.textContent = percentage + '% Complete';
+      }
     }
 
     // Save progress to localStorage
