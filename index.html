@@ -1358,7 +1358,7 @@
                 <input type="number" name="finance_split_savings" min="0" max="100" value="0" oninput="validatePercentages('finance_split')">%
               </div>
               <div class="percentage-item">
-                <label>Necessities:</label>
+                <label>Necessities (housing, food, utilities):</label>
                 <input type="number" name="finance_split_necessities" min="0" max="100" value="0" oninput="validatePercentages('finance_split')">%
               </div>
               <div class="percentage-item">
@@ -1374,32 +1374,225 @@
             <input type="number" name="finance_fun_money" placeholder="$ per month per person" min="0">
           </div>
 
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rank in order of importance (1=most important, 3=least important):</label>
+            <div style="margin-top: 10px;">
+              <div style="margin-bottom: 10px;">
+                <label style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="finance_rank_security" min="1" max="3" style="width: 60px;">
+                  <span>Financial security</span>
+                </label>
+              </div>
+              <div style="margin-bottom: 10px;">
+                <label style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="finance_rank_experiences" min="1" max="3" style="width: 60px;">
+                  <span>Life experiences (travel, events, activities)</span>
+                </label>
+              </div>
+              <div style="margin-bottom: 10px;">
+                <label style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" name="finance_rank_possessions" min="1" max="3" style="width: 60px;">
+                  <span>Material possessions (nice home, car, clothes, gadgets)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> What do you think YOUR PARTNER would rank as most important?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="finance_partner_priority" value="security"> Financial security</label>
+              <label><input type="radio" name="finance_partner_priority" value="experiences"> Life experiences</label>
+              <label><input type="radio" name="finance_partner_priority" value="possessions"> Material possessions</label>
+            </div>
+          </div>
+
           <h3>G. Extended Family & Obligations</h3>
 
           <div class="question mandatory">
             <label><span class="label-tag mandatory">M</span> What financial obligations do you expect toward your parents/family?</label>
-            <textarea name="finance_family_obligations"></textarea>
+            <textarea name="finance_family_obligations" placeholder="Describe any expected financial support or obligations"></textarea>
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> How much would you be comfortable loaning/giving to family members?</label>
-            <input type="number" name="finance_family_amount" placeholder="$" min="0">
+            <label><span class="label-tag mandatory">M</span> How much would you be comfortable loaning/giving to family members without consulting partner?</label>
+            <input type="number" name="finance_family_gift_no_consult" placeholder="$" min="0">
           </div>
-
-          <h3>H. Partner Awareness</h3>
-
-          <div class="prediction-note">
-            💡 Predicting your partner's financial views and satisfaction
-          </div>
-
-          <!--  *******************************
-                * FILL THIS SECTION OUT
-                *******************************-->
-
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> STILL NEEDS FILLING OUT</label>
-            <div class="range-container mandatory              <input type="range" name="finance_partner_views" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+            <label><span class="label-tag mandatory">M</span> How much would you be comfortable loaning/giving to family members WITH partner discussion?</label>
+            <input type="number" name="finance_family_gift_with_consult" placeholder="$" min="0">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Should we financially support adult children beyond age:</label>
+            <div style="margin-top: 10px; display: flex; gap: 20px; align-items: center;">
+              <label style="display: flex; align-items: center; gap: 10px;">
+                Age: <input type="number" name="finance_support_age" min="0" max="50" style="width: 80px;">
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" name="finance_support_na"> N/A (no children / no support planned)
+              </label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How should we handle inheritance from our parents?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="finance_inheritance" value="combine"> Combine with joint finances</label>
+              <label><input type="radio" name="finance_inheritance" value="keep_separate"> Keep separate as individual assets</label>
+              <label><input type="radio" name="finance_inheritance" value="partial"> Partially combine (<input type="number" name="finance_inheritance_percent" min="0" max="100" style="width: 60px; display:inline;">%)</label>
+              <label><input type="radio" name="finance_inheritance" value="discuss_later"> Discuss when the time comes</label>
+              <label><input type="radio" name="finance_inheritance" value="other"> Other: <input type="text" name="finance_inheritance_other" style="display:inline; width:200px;"></label>
+            </div>
+          </div>
+
+          <h3>H. Major Purchase Philosophy</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How important is it to own your home vs. rent?</label>
+            <div class="range-container">
+              <input type="range" name="finance_own_vs_rent" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Renting is fine/preferred</span>
+              <span>10 - Owning is essential</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> New cars or used cars?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="finance_car_preference" value="new"> New cars (worth it for warranty/reliability)</label>
+              <label><input type="radio" name="finance_car_preference" value="preowned"> Certified pre-owned (best value)</label>
+              <label><input type="radio" name="finance_car_preference" value="used"> Used cars (maximize savings)</label>
+              <label><input type="radio" name="finance_car_preference" value="case_by_case"> Don't care, case-by-case</label>
+            </div>
+            <textarea name="finance_car_explanation" placeholder="Optional explanation" style="margin-top: 10px;"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your tolerance for each type of debt:</label>
+            
+            <div style="margin-top: 15px; padding: 15px; background: #f8f9ff; border-radius: 8px;">
+              <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 10px;"><strong>Credit card debt:</strong></label>
+                <div class="range-container">
+                  <input type="range" name="finance_debt_credit_card" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+                  <span class="range-value">5</span>
+                </div>
+                <div class="range-labels">
+                  <span>1 - Never acceptable</span>
+                  <span>10 - Comfortable carrying balance</span>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 10px;"><strong>Car loans:</strong></label>
+                <div class="range-container">
+                  <input type="range" name="finance_debt_car" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+                  <span class="range-value">5</span>
+                </div>
+                <div class="range-labels">
+                  <span>1 - Always pay cash</span>
+                  <span>10 - Always finance</span>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 10px;"><strong>Mortgage debt:</strong></label>
+                <div class="range-container">
+                  <input type="range" name="finance_debt_mortgage" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+                  <span class="range-value">5</span>
+                </div>
+                <div class="range-labels">
+                  <span>1 - Pay off ASAP</span>
+                  <span>10 - Leverage as investment tool</span>
+                </div>
+              </div>
+
+              <div>
+                <label style="display: block; margin-bottom: 10px;"><strong>Investment loans (margin, business loans):</strong></label>
+                <div class="range-container">
+                  <input type="range" name="finance_debt_investment" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+                  <span class="range-value">5</span>
+                </div>
+                <div class="range-labels">
+                  <span>1 - Never</span>
+                  <span>10 - Smart leverage</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3>I. Values & Charitable Giving</h3>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> What percentage of income should go to charitable giving/tithing?</label>
+            <div style="margin-top: 10px; display: flex; gap: 20px; align-items: center;">
+              <label style="display: flex; align-items: center; gap: 10px;">
+                <input type="number" name="finance_charity_percent" min="0" max="100" style="width: 80px;">%
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" name="finance_charity_na"> N/A / None planned
+              </label>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Describe your philosophy on financial generosity:</label>
+            <textarea name="finance_generosity_philosophy" placeholder="What does financial generosity mean to you?"></textarea>
+          </div>
+
+          <h3>J. Financial Goals & Partner Awareness</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Personal financial goal (1-Year):</label>
+            <textarea name="finance_personal_goal_1yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Personal financial goal (5-Year):</label>
+            <textarea name="finance_personal_goal_5yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Couple financial goal (1-Year):</label>
+            <textarea name="finance_couple_goal_1yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Couple financial goal (5-Year):</label>
+            <textarea name="finance_couple_goal_5yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Top 3 obstacles to financial goals:</label>
+            <div style="margin-top: 10px;">
+              <input type="text" name="finance_obstacle_1" placeholder="Obstacle 1" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+              <input type="text" name="finance_obstacle_2" placeholder="Obstacle 2" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+              <input type="text" name="finance_obstacle_3" placeholder="Obstacle 3" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How satisfied do you think YOUR PARTNER is with our financial situation?</label>
+            <div class="range-container">
+              <input type="range" name="finance_partner_satisfaction" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What do you think YOUR PARTNER'S biggest financial concern is?</label>
+            <textarea name="finance_partner_concern"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your alignment as a couple on financial matters (1=major misalignment, 10=perfectly aligned)</label>
+            <div class="range-container">
+              <input type="range" name="finance_couple_alignment" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
               <span class="range-value">5</span>
             </div>
           </div>
