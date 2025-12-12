@@ -1137,7 +1137,7 @@
 
           <div class="section-nav">
             <button type="button" class="btn-prev" onclick="goToSection('domain2')">← Previous</button>
-            <button type="button" class="btn-next" onclick="goToSection('domain4')">Next: Domain 4 (Financial) →</button>
+            <button type="button" class="btn-next" onclick="goToSection('domain4')">Next: Domain 4 →</button>
           </div>
         </section>
 
@@ -2282,6 +2282,16 @@
     document.addEventListener('DOMContentLoaded', function() {
       loadProgress();
       updateProgressBar();
+      
+      // Attach event listeners to all form inputs
+      const form = document.getElementById('planningForm');
+      if (form) {
+        const allInputs = form.querySelectorAll('input, textarea, select');
+        allInputs.forEach(input => {
+          input.addEventListener('change', updateProgressBar);
+          input.addEventListener('input', updateProgressBar);
+        });
+      }
     });
 
     // Navigate between sections
@@ -2556,9 +2566,18 @@
       updateProgressBar();
     }
 
-    // Update progress whenever form changes
-    document.addEventListener('change', updateProgressBar);
-    document.addEventListener('input', updateProgressBar);
+    // Update progress whenever form changes (global listeners as backup)
+    document.addEventListener('change', function(e) {
+      if (e.target.closest('#planningForm')) {
+        updateProgressBar();
+      }
+    });
+    
+    document.addEventListener('input', function(e) {
+      if (e.target.closest('#planningForm')) {
+        updateProgressBar();
+      }
+    });
   </script>
 </body>
 </html>
