@@ -2221,85 +2221,66 @@
       }
     });
 
+    // Section-based progress tracking
+    // Define which sections count toward progress (instructions = 0%)
+    const fillableSections = [
+      'snapshot',
+      'reflection',
+      'domain1',
+      'domain2',
+      'domain3',
+      'domain4',
+      'domain5',
+      'domain6',
+      'cross_domain',
+      'goals',
+      'completion'
+    ];
+
+    let currentSectionId = 'instructions';
+
     // Navigate between sections
     function goToSection(sectionId) {
       // Hide all sections
       const sections = document.querySelectorAll('.section');
       sections.forEach(section => section.classList.add('hidden'));
-      
+
       // Show the target section
       const targetSection = document.getElementById(sectionId);
       if (targetSection) {
         targetSection.classList.remove('hidden');
         window.scrollTo(0, 0);
+        currentSectionId = sectionId;
         updateProgressBar();
       }
     }
 
-    // Update progress bar based on filled fields across entire form
+    // Update progress bar based on which section the user is on
     function updateProgressBar() {
-      const form = document.getElementById('planningForm');
-      
-      // Get all form elements
-      const allInputs = form.querySelectorAll('input, textarea, select');
-      let totalFields = 0;
-      let filledFields = 0;
-      
-      // Track which radio/checkbox groups we've already counted
-      const radioCheckboxGroups = new Set();
-      
-      allInputs.forEach(input => {
-        // Skip hidden inputs and file inputs
-        if (input.type === 'hidden' || input.type === 'file') {
-          return;
-        }
-        
-        // Handle radio buttons and checkboxes - count the group once
-        if (input.type === 'radio' || input.type === 'checkbox') {
-          const groupKey = input.name;
-          
-          // Skip if we've already counted this group
-          if (radioCheckboxGroups.has(groupKey)) {
-            return;
-          }
-          
-          radioCheckboxGroups.add(groupKey);
-          totalFields++;
-          
-          // Check if any radio/checkbox in this group is checked
-          const groupElements = form.querySelectorAll(`[name="${groupKey}"]`);
-          let isChecked = false;
-          groupElements.forEach(el => {
-            if (el.checked) {
-              isChecked = true;
-            }
-          });
-          
-          if (isChecked) {
-            filledFields++;
-          }
-        } else {
-          // For text inputs, textareas, number inputs, range inputs, etc.
-          totalFields++;
-          
-          // Check if field has a value
-          if (input.value && input.value.trim() !== '') {
-            filledFields++;
-          }
-        }
-      });
-      
-      // Calculate percentage
-      const percentage = totalFields > 0 ? Math.round((filledFields / totalFields) * 100) : 0;
-      
-      // Update progress bar
       const progressBar = document.getElementById('progressBar');
       const progressText = document.getElementById('progressText');
-      
-      if (progressBar && progressText) {
-        progressBar.style.width = percentage + '%';
-        progressText.textContent = percentage + '% Complete';
+
+      if (!progressBar || !progressText) return;
+
+      // If still on the instructions page, show 0%
+      if (currentSectionId === 'instructions') {
+        progressBar.style.width = '0%';
+        progressText.textContent = '0% Complete';
+        return;
       }
+
+      // Find position in fillableSections (1-based)
+      const idx = fillableSections.indexOf(currentSectionId);
+      const total = fillableSections.length;
+
+      // If not found (fallback), treat as 0
+      const position = idx >= 0 ? idx + 1 : 0;
+
+      // Percentage is position / total (e.g., snapshot = 1/11)
+      const percentage = total > 0 ? Math.round((position / total) * 100) : 0;
+
+      progressBar.style.width = percentage + '%';
+      progressText.textContent = percentage + '% Complete';
     }
 
     // Save progress to localStorage
