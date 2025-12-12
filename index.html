@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Couples Planning Toolkit</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    /* Sticky Navigation */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      background: white;
+      border-bottom: 3px solid #667eea;
+      padding: 15px 20px;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .progress-container {
+      margin-bottom: 10px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    .progress-text {
+      display: block;
+      font-size: 13px;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .nav-buttons button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      background: #667eea;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .nav-buttons button:hover {
+      background: #764ba2;
+      transform: translateY(-2px);
+    }
+
+    .last-saved {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    /* Main Content */
+    main {
+      padding: 40px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    header h1 {
+      font-size: 36px;
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #666;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section h2 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #667eea;
+    }
+
+    .section h3 {
+      font-size: 22px;
+      color: #555;
+      margin: 30px 0 15px 0;
+    }
+
+    .domain-intro {
+      background: #f8f9ff;
+      padding: 15px;
+      border-left: 4px solid #667eea;
+      margin-bottom: 25px;
+      font-style: italic;
+      color: #555;
+    }
+
+    /* Questions */
+    .question {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #fafafa;
+      border-radius: 8px;
+      border-left: 4px solid #ddd;
+    }
+
+    .question.mandatory {
+      border-left-color: #e53e3e;
+      background: #fff5f5;
+    }
+
+    .question.nice-to-have {
+      border-left-color: #48bb78;
+      background: #f0fff4;
+    }
+
+    .question label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .label-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .label-tag.mandatory {
+      background: #e53e3e;
+      color: white;
+    }
+
+    .label-tag.nice-to-have {
+      background: #48bb78;
+      color: white;
+    }
+
+    /* Form Inputs */
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    /* Range Slider */
+    .range-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      height: 8px;
+      border-radius: 4px;
+      background: #e0e0e0;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #667eea;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #667eea;
+      cursor: pointer;
+      border: none;
+    }
+
+    .range-value {
+      font-weight: bold;
+      color: #667eea;
+      min-width: 40px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    /* Radio buttons and checkboxes */
+    .radio-group,
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .radio-group label,
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      font-weight: normal;
+      cursor: pointer;
+    }
+
+    .radio-group input[type="radio"],
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 10px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    /* Percentage inputs */
+    .percentage-group {
+      display: grid;
+      gap: 15px;
+    }
+
+    .percentage-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .percentage-item label {
+      flex: 1;
+      margin: 0;
+    }
+
+    .percentage-item input {
+      width: 80px;
+    }
+
+    .percentage-error {
+      color: #e53e3e;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Navigation between sections */
+    .section-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #f0f0f0;
+    }
+
+    .section-nav button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-prev {
+      background: #e0e0e0;
+      color: #333;
+    }
+
+    .btn-prev:hover {
+      background: #d0d0d0;
+    }
+
+    .btn-next {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-next:hover {
+      background: #764ba2;
+    }
+
+    /* Partner prediction note */
+    .prediction-note {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #856404;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .sticky-nav,
+      .nav-buttons,
+      .section-nav,
+      .no-print {
+        display: none !important;
+      }
+
+      .container {
+        box-shadow: none;
+      }
+
+      .section {
+        page-break-inside: avoid;
+      }
+
+      input, textarea, select {
+        border: none;
+        border-bottom: 1px solid #000;
+        background: transparent;
+      }
+    }
+
+    /* Hidden sections */
+    .section.hidden {
+      display: none;
+    }
+
+    /* Completion screen */
+    .completion-screen {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .completion-screen h2 {
+      color: #48bb78;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .completion-screen p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .completion-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .completion-actions button {
+      padding: 15px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-export {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-export:hover {
+      background: #764ba2;
+    }
+
+    .btn-print {
+      background: #48bb78;
+      color: white;
+    }
+
+    .btn-print:hover {
+      background: #38a169;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav">
+      <div class="progress-container">
+        <div class="progress-bar-bg">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <span class="progress-text" id="progressText">0% Complete</span>
+      </div>
+      <div class="nav-buttons">
+        <button onclick="saveProgress()">💾 Save Progress</button>
+        <button onclick="exportJSON()">📥 Export JSON</button>
+        <button onclick="document.getElementById('importFile').click()">📤 Import JSON</button>
+        <button onclick="printFilled()">🖨️ Print Filled</button>
+        <button onclick="printBlank()">📄 Print Blank</button>
+      </div>
+      <div class="last-saved" id="lastSaved"></div>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(this.files[0])">
+    </nav>
+
+    <main>
+      <header>
+        <h1>Couples Planning Toolkit</h1>
+        <p class="subtitle">Annual Planning Session Questionnaire</p>
+      </header>
+
+      <form id="planningForm">
+        
+        <!-- SECTION 1: Instructions -->
+        <section id="instructions" class="section">
+          <h2>Instructions</h2>
+          <div style="background: #f8f9ff; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h3 style="margin-top: 0;">Welcome to Your Planning Session</h3>
+            <p style="margin-bottom: 15px;"><strong>Estimated Time:</strong> 90 minutes</p>
+            <p style="margin-bottom: 15px;"><strong>Purpose:</strong> This questionnaire helps you and your partner assess your current state across six life domains and plan for the next 1-5 years. Complete this individually and privately before your joint session.</p>
+            
+            <h4 style="margin-top: 20px;">Important Guidelines:</h4>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+              <li>Answer honestly - there are no "right" answers</li>
+              <li>Complete this alone, without consulting your partner</li>
+              <li>Your data stays on your device (no uploads to servers)</li>
+              <li>Save frequently using the "Save Progress" button</li>
+              <li>Some questions ask you to predict your partner's answer - these help identify blind spots</li>
+            </ul>
+            
+            <h4 style="margin-top: 20px;">Question Labels:</h4>
+            <p><span class="label-tag mandatory">M</span> <strong>Mandatory:</strong> Critical alignment areas where disagreement often causes serious conflict</p>
+            <p><span class="label-tag nice-to-have">NTH</span> <strong>Nice-to-Have:</strong> Enhancement areas where differences can be complementary</p>
+            
+            <h4 style="margin-top: 20px;">Best Environment:</h4>
+            <ul style="margin-left: 20px;">
+              <li>Quiet, comfortable space</li>
+              <li>Uninterrupted time</li>
+              <li>Have water/snacks nearby</li>
+            </ul>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" disabled>← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('snapshot')">Next →</button>
+          </div>
+        </section>
+
+        <!-- SECTION 2: Relationship Snapshot -->
+        <section id="snapshot" class="section hidden">
+          <h2>Relationship Snapshot</h2>
+          
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Your Name:</label>
+            <input type="text" name="partnerName" required>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Years together:</label>
+            <input type="number" name="yearsTogether" min="0" required>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Years married:</label>
+            <input type="number" name="yearsMarried" min="0" required>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Current living situation:</label>
+            <div class="radio-group">
+              <label><input type="radio" name="livingSituation" value="own"> Own home</label>
+              <label><input type="radio" name="livingSituation" value="rent"> Rent</label>
+              <label><input type="radio" name="livingSituation" value="family"> Living with family</label>
+              <label><input type="radio" name="livingSituation" value="other"> Other</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Children:</label>
+            <div class="radio-group">
+              <label><input type="radio" name="hasChildren" value="yes"> Yes</label>
+              <label><input type="radio" name="hasChildren" value="no"> No</label>
+            </div>
+            <input type="text" name="childrenAges" placeholder="If yes, list ages (e.g., 5, 8, 12)" style="margin-top: 10px;">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Planning more children:</label>
+            <div class="radio-group">
+              <label><input type="radio" name="moreChildren" value="yes"> Yes</label>
+              <label><input type="radio" name="moreChildren" value="no"> No</label>
+              <label><input type="radio" name="moreChildren" value="uncertain"> Uncertain</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your current overall relationship satisfaction:</label>
+            <div class="range-container">
+              <input type="range" name="relationshipSatisfaction" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Very Dissatisfied</span>
+              <span>10 - Very Satisfied</span>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Major life transitions anticipated in next 5 years:</label>
+            <textarea name="lifeTransitions" placeholder="e.g., career changes, relocations, family planning, etc."></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Last time you did structured relationship planning:</label>
+            <input type="text" name="lastPlanning" placeholder="e.g., Never, 1 year ago, 3 years ago">
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What was the best moment in your relationship in the past year?</label>
+            <textarea name="bestMoment"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What was the biggest challenge in your relationship in the past year?</label>
+            <textarea name="biggestChallenge"></textarea>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('instructions')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('reflection')">Next →</button>
+          </div>
+        </section>
+
+        <!-- SECTION 3: Prior Year Reflection (Rose, Bud, Thorn) -->
+        <section id="reflection" class="section hidden">
+          <h2>Prior Year Reflection: Rose, Bud, Thorn</h2>
+          
+          <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
+            <strong>This reflection grounds your future planning in recent history.</strong>
+          </div>
+
+          <h3>🌹 ROSE - Best Memory</h3>
+          
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What was your favorite memory together from the past year?</label>
+            <textarea name="rose_memory"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What made this moment special?</label>
+            <textarea name="rose_why"></textarea>
+          </div>
+
+          <h3>🌱 BUD - Emerging Growth</h3>
+          
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What did we start in the past year that we should continue or expand?</label>
+            <textarea name="bud_continue"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What positive change have you noticed in yourself or our relationship?</label>
+            <textarea name="bud_change"></textarea>
+          </div>
+
+          <h3>🥀 THORN - Biggest Struggle</h3>
+          
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What was the hardest challenge we faced in the past year?</label>
+            <textarea name="thorn_challenge"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How did we handle it? What could we do differently?</label>
+            <textarea name="thorn_handling"></textarea>
+          </div>
+
+          <h3>Goal Review</h3>
+          
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> What personal goals did you set last year? Which were achieved?</label>
+            <textarea name="lastYear_personalGoals"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> What couple goals did we set last year? Which were achieved?</label>
+            <textarea name="lastYear_coupleGoals"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Why did some goals succeed and others not?</label>
+            <textarea name="lastYear_whySuccess"></textarea>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('snapshot')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('domain1')">Next: Domain 1 →</button>
+          </div>
+        </section>
+
+        <!-- DOMAIN 1: Mental & Emotional Well-being -->
+        <section id="domain1" class="section hidden">
+          <h2>Domain 1: Mental and Emotional Well-being</h2>
+          
+          <div class="domain-intro">
+            This domain covers your emotional health, stress management, mental stimulation, therapy/counseling, anxiety/depression management, life satisfaction, sense of purpose, and emotional fulfillment.
+          </div>
+
+          <h3>A. Current State (Individual)</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your current overall mental/emotional well-being:</label>
+            <div class="range-container">
+              <input type="range" name="mental_wellbeing" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Struggling Significantly</span>
+              <span>10 - Thriving</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your current stress level:</label>
+            <div class="range-container">
+              <input type="range" name="mental_stress" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Very Low Stress</span>
+              <span>10 - Overwhelming Stress</span>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> Rate your current life satisfaction:</label>
+            <div class="range-container">
+              <input type="range" name="mental_satisfaction" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Very Dissatisfied</span>
+              <span>10 - Very Satisfied</span>
+            </div>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> How much effort do you currently invest in your mental/emotional health?</label>
+            <div class="range-container">
+              <input type="range" name="mental_effort" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - No Intentional Effort</span>
+              <span>10 - Major Daily Investment</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Do you currently experience symptoms of anxiety or depression that affect your daily life?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="mental_symptoms" value="treatment"> Yes, currently receiving treatment</label>
+              <label><input type="radio" name="mental_symptoms" value="needTreatment"> Yes, not receiving treatment but need to</label>
+              <label><input type="radio" name="mental_symptoms" value="manageable"> Occasionally, manageable without treatment</label>
+              <label><input type="radio" name="mental_symptoms" value="no"> No</label>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What are your top 2-3 emotional needs in your life right now?</label>
+            <textarea name="mental_needs"></textarea>
+          </div>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> What activities or practices help you feel emotionally balanced?</label>
+            <textarea name="mental_practices" placeholder="e.g., therapy, meditation, exercise, creative outlets"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What are the biggest sources of stress in your life currently?</label>
+            <textarea name="mental_stressors"></textarea>
+          </div>
+
+          <h3>B. Current State (Partner Awareness)</h3>
+
+          <div class="prediction-note">
+            💡 The following questions ask you to predict YOUR PARTNER's answers. This helps identify blind spots and differences in perception.
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How satisfied do you think YOUR PARTNER is with their mental/emotional well-being?</label>
+            <div class="range-container">
+              <input type="range" name="mental_partner_wellbeing" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Struggling</span>
+              <span>10 - Thriving</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> How stressed do you think YOUR PARTNER currently is?</label>
+            <div class="range-container">
+              <input type="range" name="mental_partner_stress" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What do you think your partner would say is their biggest emotional stressor?</label>
+            <textarea name="mental_partner_stressor"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> Rate your current alignment as a couple in supporting each other's emotional needs:</label>
+            <div class="range-container">
+              <input type="range" name="mental_alignment" min="1" max="10" value="5" oninput="updateRangeDisplay(this)">
+              <span class="range-value">5</span>
+            </div>
+            <div class="range-labels">
+              <span>1 - Not Aligned</span>
+              <span>10 - Very Aligned</span>
+            </div>
+          </div>
+
+          <h3>C. Future Vision</h3>
+
+          <div class="question nice-to-have">
+            <label><span class="label-tag nice-to-have">NTH</span> What does optimal mental/emotional well-being look like for YOU in 1 year?</label>
+            <textarea name="mental_vision_1yr"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What boundaries or changes would most improve your emotional well-being in the next year?</label>
+            <textarea name="mental_boundaries"></textarea>
+          </div>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> As a couple, what should our approach to managing stress and emotions be in the next 1-5 years?</label>
+            <textarea name="mental_couple_approach"></textarea>
+          </div>
+
+          <h3>D. Obstacles & Resources</h3>
+
+          <div class="question mandatory">
+            <label><span class="label-tag mandatory">M</span> What would you need from your partner to improve your emotional well-being?</label>
+            <textarea name="mental_partner_support"></textarea>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('reflection')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('completion')">Complete Form →</button>
+          </div>
+        </section>
+
+        <!-- NOTE: Additional domains would follow the same pattern as Domain 1 -->
+        <!-- For brevity in this demo, we're showing the structure with Domain 1 complete -->
+        <!-- In production, add Domains 2-6 following the same pattern from the questionnaire -->
+
+        <!-- COMPLETION SCREEN -->
+        <section id="completion" class="section hidden">
+          <div class="completion-screen">
+            <h2>✅ Questionnaire Complete!</h2>
+            <p>Great work! You've completed your individual assessment.</p>
+            
+            <div style="background: #f8f9ff; padding: 20px; border-radius: 8px; margin: 30px 0; text-align: left;">
+              <h3 style="margin-top: 0;">Next Steps:</h3>
+              <ol style="margin-left: 20px;">
+                <li><strong>Export your responses</strong> as JSON (saves all your answers)</li>
+                <li><strong>Your partner completes</strong> their questionnaire independently</li>
+                <li><strong>Schedule your joint planning session</strong> (recommend 3-4 hours)</li>
+                <li><strong>Load both JSON files</strong> in the Comparison Tool (coming soon)</li>
+                <li><strong>Review the Alignment Dashboard</strong> together</li>
+                <li><strong>Follow the Discussion Guide</strong> for your meeting</li>
+              </ol>
+            </div>
+
+            <div class="completion-actions">
+              <button type="button" class="btn-export" onclick="exportJSON()">📥 Export My Responses (JSON)</button>
+              <button type="button" class="btn-print" onclick="printFilled()">🖨️ Print Completed Form</button>
+              <button type="button" class="btn-print" onclick="printBlank()">📄 Print Blank Form</button>
+              <button type="button" class="btn-next" onclick="window.open('discussion-guide.html', '_blank')">📋 View Discussion Guide</button>
+            </div>
+          </div>

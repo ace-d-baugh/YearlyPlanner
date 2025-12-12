@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discussion Guide - Couples Planning Session</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 50px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      color: #667eea;
+      font-size: 36px;
+      margin-bottom: 10px;
+      border-bottom: 4px solid #667eea;
+      padding-bottom: 15px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #667eea;
+      font-size: 28px;
+      margin: 40px 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    h3 {
+      color: #555;
+      font-size: 22px;
+      margin: 30px 0 15px 0;
+    }
+
+    h4 {
+      color: #666;
+      font-size: 18px;
+      margin: 20px 0 10px 0;
+    }
+
+    .phase {
+      background: #f8f9ff;
+      padding: 25px;
+      border-left: 5px solid #667eea;
+      margin: 30px 0;
+      border-radius: 5px;
+    }
+
+    .phase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .phase-title {
+      font-size: 24px;
+      color: #667eea;
+      font-weight: bold;
+    }
+
+    .phase-time {
+      background: #667eea;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    .alert {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .alert-critical {
+      background: #fee;
+      border-color: #e53e3e;
+    }
+
+    .alert-success {
+      background: #f0fff4;
+      border-color: #48bb78;
+    }
+
+    .script-box {
+      background: #e3f2fd;
+      border-left: 4px solid #2196F3;
+      padding: 15px;
+      margin: 15px 0;
+      font-style: italic;
+    }
+
+    .checklist {
+      background: white;
+      border: 2px solid #e0e0e0;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+
+    .checklist li {
+      margin: 10px 0;
+      list-style-type: none;
+    }
+
+    .checklist li:before {
+      content: "☐ ";
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    ul, ol {
+      margin-left: 30px;
+      margin-bottom: 15px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    .card {
+      background: white;
+      border: 2px solid #e0e0e0;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .card-title {
+      font-weight: bold;
+      color: #667eea;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .timeline {
+      border-left: 3px solid #667eea;
+      padding-left: 25px;
+      margin: 20px 0;
+    }
+
+    .timeline-item {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .timeline-item:before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      background: #667eea;
+      border-radius: 50%;
+      position: absolute;
+      left: -31px;
+      top: 5px;
+    }
+
+    .warning-box {
+      background: #fee;
+      border: 3px solid #e53e3e;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 8px;
+    }
+
+    .warning-box strong {
+      color: #e53e3e;
+      font-size: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #667eea;
+      color: white;
+    }
+
+    .print-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 24px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .print-button:hover {
+      background: #764ba2;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      
+      .container {
+        box-shadow: none;
+        padding: 20px;
+      }
+      
+      .print-button {
+        display: none;
+      }
+      
+      .phase, .card {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="print-button" onclick="window.print()">🖨️ Print Guide</button>
+  
+  <div class="container">
+    <h1>Couples Planning Session</h1>
+    <p class="subtitle">Discussion Guide & Facilitation Framework</p>
+
+    <div class="alert">
+      <strong>⏱️ Estimated Total Time:</strong> 3-4 hours (including break)<br>
+      <strong>📋 Prerequisites:</strong> Both partners have completed their individual questionnaires<br>
+      <strong>🎯 Goal:</strong> Understand differences, align on priorities, commit to shared goals
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2>Session Overview</h2>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <strong>PHASE 1:</strong> Pre-Meeting Setup (15 min)
+      </div>
+      <div class="timeline-item">
+        <strong>PHASE 2:</strong> Celebrate Alignment (15 min)
+      </div>
+      <div class="timeline-item">
+        <strong>PHASE 3:</strong> Understand Differences (40 min)
+      </div>
+      <div class="timeline-item">
+        <strong>PHASE 4:</strong> HALFTIME BREAK (20-30 min) ⚠️ MANDATORY
+      </div>
+      <div class="timeline-item">
+        <strong>PHASE 5:</strong> Navigate Conflicts (45 min)
+      </div>
+      <div class="timeline-item">
+        <strong>PHASE 6:</strong> Commit to Goals (30 min)
+      </div>
+      <div class="timeline-item">
+        <strong>PHASE 7:</strong> Process & Appreciation (15 min)
+      </div>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-title">PHASE 1: Pre-Meeting Setup</span>
+        <span class="phase-time">15 minutes</span>
+      </div>
+
+      <h4>Environment Preparation:</h4>
+      <div class="checklist">
+        <ul>
+          <li>Choose neutral, comfortable space (not bedroom, not in front of TV)</li>
+          <li>Eliminate distractions (phones on silent/away, no interruptions)</li>
+          <li>Have water, snacks, tissues available</li>
+          <li>Set time boundaries (block 3-4 hours minimum)</li>
+          <li>Both partners have their completed questionnaires or JSON files</li>
+          <li>Have paper and pen for notes</li>
+        </ul>
+      </div>
+
+      <h4>Ground Rules Agreement:</h4>
+      <div class="script-box">
+        "Before we begin, let's agree on some ground rules to make this productive:"
+      </div>
+      
+      <div class="checklist">
+        <ul>
+          <li>We will listen fully before responding (no interrupting)</li>
+          <li>We will assume good intentions</li>
+          <li>We will use "I feel..." statements, not "You always..."</li>
+          <li>We will take breaks if emotions escalate</li>
+          <li>We will end with appreciation and next steps</li>
+          <li>We each have ONE "Veto Card" to use</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🃏 The "Veto Card" Protocol</div>
+        <p>Each partner gets <strong>ONE</strong> "Veto Card" they can play during the session:</p>
+        <div class="script-box">
+          "I cannot explain strictly logically why, but this goal/plan gives me visceral anxiety and I cannot commit to it right now. I need us to table this and revisit it in [timeframe]."
+        </div>
+        <p><strong>Important:</strong> Respect the veto without pressuring for explanation. This protects emotional safety when something feels deeply wrong but can't be articulated fully yet.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📋 The "Parking Lot" Agreement</div>
+        <p>Keep a visible list (whiteboard, paper) for topics that derail progress:</p>
+        <ul>
+          <li>If any single topic stalls for >10 minutes, it goes to Parking Lot</li>
+          <li>Schedule dedicated 30-min sessions for Parking Lot items within the next week</li>
+          <li>This prevents one issue from hijacking the entire session</li>
+        </ul>
+        <p><strong>Example Parking Lot items:</strong> "What's our actual monthly grocery spend?" "Research retirement calculators" "Get quotes on life insurance"</p>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-title">PHASE 2: Celebrate Alignment</span>
+        <span class="phase-time">15 minutes</span>
+      </div>
+
+      <div class="alert-success">
+        <strong>PURPOSE:</strong> Build positive foundation before addressing conflicts. Research shows starting with strengths predicts better outcomes.
+      </div>
+
+      <div class="script-box">
+        "Before we discuss differences, let's acknowledge where we're already aligned. This helps us remember we're on the same team."
+      </div>
+
+      <h4>Activities (in order):</h4>
+      <ol>
+        <li><strong>Review 🟢 GREEN domains together</strong>
+          <ul>
+            <li>Look at your Alignment Dashboard (if using comparison tool)</li>
+            <li>Or simply compare satisfaction ratings where you're within 2 points</li>
+          </ul>
+        </li>
+        <li><strong>Read aloud one area where you're both highly satisfied</strong>
+          <ul>
+            <li>Take turns sharing what's going well</li>
+          </ul>
+        </li>
+        <li><strong>Each person shares:</strong>
+          <div class="script-box">
+            "Something I appreciate about how you handle [green domain] is..."
+          </div>
+        </li>
+        <li><strong>Acknowledge shared goals and values</strong>
+          <ul>
+            <li>Which goals did you both identify independently?</li>
+            <li>What values showed up in both your lists?</li>
+          </ul>
+        </li>
+        <li><strong>Celebrate prediction accuracy</strong>
+          <div class="script-box">
+            "I know you well in these areas - I predicted accurately that you..."
+          </div>
+        </li>
+      </ol>
+
+      <div class="warning-box">
+        <strong>⚠️ DON'T SKIP THIS PHASE!</strong><br>
+        Starting with positives activates "positive sentiment override" (Gottman research) - you'll interpret differences more charitably and have more emotional resources for harder conversations.
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-title">PHASE 3: Understand Differences</span>
+        <span class="phase-time">40 minutes</span>
+      </div>
+
+      <div class="alert">
+        <strong>PURPOSE:</strong> Explore 🟡 YELLOW flag items (moderate gaps, 3-5 points) to build understanding
+      </div>
+
+      <h4>Order of Discussion:</h4>
+      <ol>
+        <li>Start with 🟡 YELLOW items (moderate gaps)</li>
+        <li>Pick 2-3 YELLOW areas that feel most important</li>
+        <li>Use structured conversation format below</li>
+      </ol>
+
+      <h4>Conversation Format for Each Item (13 minutes per item):</h4>
+      
+      <div class="card">
+        <div class="card-title">Step 1: Share Perspectives (6 minutes)</div>
+        <ul>
+          <li><strong>Partner A explains</strong> their rating/response (3 min uninterrupted)</li>
+          <li><strong>Partner B reflects back</strong> what they heard (1 min)</li>
+          <li><strong>Partner B explains</strong> their rating/response (3 min uninterrupted)</li>
+          <li><strong>Partner A reflects back</strong> what they heard (1 min)</li>
+        </ul>
+        
+        <div class="script-box">
+          <strong>Reflection Formula:</strong><br>
+          "What I hear you saying is... [paraphrase]. The part that seems most important to you is... [core need]. Did I understand correctly?"
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Step 2: Identify the Gap Type (2 minutes)</div>
+        <p>Is this difference due to:</p>
+        <ul>
+          <li>Different <strong>VALUES</strong> (what we think is important)</li>
+          <li>Different <strong>PRIORITIES</strong> (when we think this matters)</li>
+          <li>Different <strong>INFORMATION</strong> (what we know/believe)</li>
+          <li>Different <strong>NEEDS</strong> (what fulfills us)</li>
+          <li>Different <strong>EXPERIENCES</strong> (our history shapes this)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Step 3: Explore Creative Solutions (5 minutes)</div>
+        <p><strong>Guiding Questions:</strong></p>
+        <ul>
+          <li>"Is there a way to honor both perspectives?"</li>
+          <li>"What would a compromise look like?"</li>
+          <li>"Could we experiment with both approaches?"</li>
+          <li>"Is this an area where difference is actually complementary?"</li>
+        </ul>
+      </div>
+
+      <h4>Example Questions to Deepen Understanding:</h4>
+      <div class="script-box">
+        "Help me understand why this matters so much to you..."<br><br>
+        "What would it feel like for you if we did it your way? My way?"<br><br>
+        "What are you afraid might happen if we don't align here?"<br><br>
+        "What's the underlying need beneath your preference?"
+      </div>
+    </div>
+
+    <!-- PHASE 4 - HALFTIME -->
+    <div class="phase" style="border-left-color: #e53e3e;">
+      <div class="phase-header">
+        <span class="phase-title">PHASE 4: HALFTIME BREAK</span>
+        <span class="phase-time" style="background: #e53e3e;">20-30 minutes ⚠️ MANDATORY</span>
+      </div>
+
+      <div class="warning-box">
+        <strong>🚨 THIS BREAK IS NON-NEGOTIABLE 🚨</strong><br>
+        Do NOT skip this break, even if you feel like you're "on a roll."
+      </div>
+
+      <h4>Rules:</h4>
+      <div class="checklist">
+        <ul>
+          <li>Do NOT discuss the planning session during break</li>
+          <li>Eat something (decision fatigue is real; glucose helps)</li>
+          <li>Move your body (walk, stretch, different room)</li>
+          <li>Do something distinct (music, fresh air, check on kids)</li>
+          <li>Reset emotional state before continuing</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Why This Matters</div>
+        <p>Research on decision fatigue shows decision quality drops precipitously after 90-120 minutes without a break. You will make <strong>better decisions about your life</strong> if you rest first.</p>
+        <p>Your prefrontal cortex (rational brain) needs glucose and rest. Without this break, you're more likely to:</p>
+        <ul>
+          <li>Make defensive choices</li>
+          <li>Agree to things you don't actually want</li>
+          <li>Get stuck in circular arguments</li>
+          <li>Miss creative solutions</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-title">PHASE 5: Navigate Conflicts</span>
+        <span class="phase-time">45 minutes</span>
+      </div>
+
+      <div class="alert-critical">
+        <strong>PURPOSE:</strong> Address 🔴 RED flag items (large gaps >6 points, especially on Mandatory questions)
+      </div>
+
+      <div class="script-box">
+        <strong>Critical Mindset:</strong><br>
+        "These are areas where we see things very differently. That doesn't mean one of us is wrong. Our job is to find a path forward that doesn't require either of us to violate our core values or needs."
+      </div>
+
+      <h4>Approach for Each RED Item (20 minutes per major conflict):</h4>
+
+      <div class="card">
+        <div class="card-title">Step 1: Full Hearing (10 minutes)</div>
+        <ul>
+          <li><strong>Partner A:</strong> "Here's what this means to me and why it matters..." (5 min uninterrupted)</li>
+          <li><strong>Partner B:</strong> Reflects back without judgment (2 min)</li>
+          <li><strong>Partner B:</strong> "Here's my perspective and concerns..." (5 min uninterrupted)</li>
+          <li><strong>Partner A:</strong> Reflects back without judgment (2 min)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Step 2: Identify Deal-Breakers vs. Preferences (5 minutes)</div>
+        <p>Each person answers honestly:</p>
+        <ul>
+          <li>Is this a <strong>DEALBREAKER</strong>? (core value, can't compromise)</li>
+          <li>Is this a <strong>STRONG PREFERENCE</strong>? (important but negotiable)</li>
+          <li>Is this a <strong>WEAK PREFERENCE</strong>? (I have an opinion but flexible)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Step 3: Problem-Solve (10 minutes)</div>
+        
+        <h4>If both are dealbreakers:</h4>
+        <ul>
+          <li>This is a fundamental incompatibility that may require professional help</li>
+          <li><strong>Options:</strong> couples therapy, trial period, deeper values exploration</li>
+          <li>Be honest about whether this is relationship-threatening</li>
+        </ul>
+
+        <h4>If one is dealbreaker, one is preference:</h4>
+        <ul>
+          <li>The dealbreaker takes precedence</li>
+          <li><strong>Explore:</strong> "What would make this easier for the non-dealbreaker partner?"</li>
+          <li><strong>Compensation:</strong> "What can I offer you in another area?"</li>
+        </ul>
+
+        <h4>If both are preferences:</h4>
+        <ul>
+          <li>Compromise, alternate, experiment, or create hybrid approach</li>
+          <li><strong>Set trial periods:</strong> "Let's try it your way for 3 months, then reassess"</li>
+        </ul>
+      </div>
+
+      <h4>Step 4: When Stuck - Use These Tools</h4>
+
+      <table>
+        <tr>
+          <th>Tool</th>
+          <th>How to Use</th>
+        </tr>
+        <tr>
+          <td><strong>The "Third Entity" Reframe</strong></td>
+          <td>Ask: "What does our RELATIONSHIP need?" (not just what each person wants). Sometimes both people's preferences need to yield to what serves the partnership.</td>
+        </tr>
+        <tr>
+          <td><strong>Values Clarification</strong></td>
+          <td>"What value is driving your position?" (security, freedom, growth, etc.)<br>"Can that value be honored through a different approach?"</td>
+        </tr>
+        <tr>
+          <td><strong>Future Self Perspective</strong></td>
+          <td>"If we're looking back on this in 5 years, what decision would we be proud of?"<br>"What would 70-year-old us advise?"</td>
+        </tr>
+        <tr>
+          <td><strong>Temporary vs. Permanent</strong></td>
+          <td>"Is this a forever decision or can we revisit in 1-2 years?"<br>Many conflicts ease when reframed as experiments, not permanence.</td>
+        </tr>
+        <tr>
+          <td><strong>Professional Help</strong></td>
+          <td>For major conflicts (children, relocation, financial philosophy), consider:<br>• Licensed couples therapist<br>• Financial therapist<br>• Career counselor<br>• Religious/spiritual advisor</td>
+        </tr>
+      </table>
+
+      <div class="warning-box">
+        <strong>🚨 RED FLAGS requiring immediate professional help:</strong>
+        <ul>
+          <li>Contempt or disrespect during discussion</li>
+          <li>Unwillingness to hear partner's perspective</li>
+          <li>Fundamental value conflicts about children, fidelity, or finances</li>
+          <li>Pattern of one person always accommodating</li>
+          <li>Threats (explicit or implied)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PHASE 6 -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-title">PHASE 6: Commit to Goals</span>
+        <span class="phase-time">30 minutes</span>
+      </div>
+
+      <div class="alert-success">
+        <strong>PURPOSE:</strong> Translate insights into actionable commitments
+      </div>
+
+      <h4>A. Individual Goals Review (10 minutes)</h4>
+      <ol>
+        <li>Each person shares their Top 3 personal 1-year goals</li>
+        <li>Partner responds: "Here's how I can support you..."</li>
+        <li>Identify any conflicts between individual goals</li>
+        <li>Agree on what accommodations may be needed</li>
+      </ol>
+
+      <h4>B. Couple Goals Selection (15 minutes)</h4>
+      
+      <div class="card">
+        <div class="card-title">Critical Process:</div>
+        <ol>
+          <li>Each person shares their Top 3 couple goals</li>
+          <li>Identify overlapping goals (these become primary)</li>
+          <li>For non-overlapping goals, discuss:
+            <ul>
+              <li>Is one person more invested than the other?</li>
+              <li>Does it truly serve "us" or is it one person's preference?</li>
+              <li>Can it be reframed or modified to create genuine buy-in?</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="card-title">The Shared Vision Test</div>
+        <p>For each proposed couple goal, <strong>both partners</strong> answer honestly:</p>
+        <ul>
+          <li>"Do I genuinely want this?" (not just willing to go along)</li>
+          <li>"Will I feel resentful if I invest time/energy in this?"</li>
+          <li>"Does this serve our relationship or just one of us?"</li>
+        </ul>
+        <p><strong>If either partner answers "no" to #1 or "yes" to #2, it's not a true couple goal yet.</strong></p>
+      </div>
+
+      <p><strong>Select Top 3 Couple Goals for 1-Year</strong> (must have genuine buy-in from both)</p>
+
+      <h4>C. Schedule the Monthly "Board Meetings" ⚠️ MANDATORY</h4>
+
+      <div class="warning-box">
+        <strong>BEFORE ENDING THIS SESSION, SCHEDULE:</strong>
+        <ul>
+          <li>Next 3 monthly review dates (put in calendar NOW)</li>
+          <li>Format: 45-minute "Board Meeting" to review progress</li>
+          <li>Location: Same neutral space</li>
+          <li>Non-negotiable: If it's not on the calendar, it won't happen</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Monthly Board Meeting Structure (45 minutes):</div>
+        <ol>
+          <li>Review goal progress (15 min)</li>
+          <li>What's working? What's not? (10 min)</li>
+          <li>Do we need to adjust any goals? (10 min)</li>
+          <li>What support do we need from each other? (5 min)</li>
+          <li>Appreciate efforts and progress (5 min)</li>
+        </ol>
+      </div>
+
+      <div class="alert-critical">
+        <strong>WHY THIS IS MANDATORY:</strong><br>
+        The #1 failure point in annual planning is lack of review. Plans without review die by March. Research shows that accountability check-ins increase goal achievement by 65%+. Scheduling the first 3 sessions NOW ensures follow-through.
+      </div>
+    </div>
+
+    <!-- PHASE 7 -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-title">PHASE 7: Process & Appreciation</span>
+        <span class="phase-time">15 minutes</span>
+      </div>
+
+      <h4>Reflection Questions (each person answers):</h4>
+      <ul>
+        <li>"What did you learn about your partner today?"</li>
+        <li>"What did you learn about yourself?"</li>
+        <li>"What surprised you most?"</li>
+        <li>"Where do you feel most hopeful?"</li>
+        <li>"Where do you feel most concerned?"</li>
+      </ul>
+
+      <h4>Appreciation Protocol:</h4>
+      <p>Each person completes these sentences:</p>
+      <div class="script-box">
+        "Thank you for being willing to..."<br><br>
+        "I appreciate how you..."<br><br>
+        "One thing that gives me confidence in us is..."<br><br>
+        "I'm excited about..."
+      </div>
+
+      <h4>Closing Ritual:</h4>
+      <div class="checklist">
+        <ul>
+          <li>Physically mark the end (handshake, hug, toast)</li>
+          <li>Acknowledge the work you've both done</li>
+          <li>Express commitment to the process</li>
+          <li>Agree on one small thing to do together in the next 24 hours</li>
+        </ul>
+      </div>
+
+      <div class="alert-success">
+        <strong>Congratulations!</strong> You've completed a comprehensive planning session. This is relationship work at its best.
+      </div>
+    </div>
+
+    <!-- POST-SESSION -->
+    <h2>Post-Session: The Parking Lot Follow-Up</h2>
+    
+    <div class="card">
+      <div class="card-title">Within 7 Days, Address Parking Lot Items:</div>
+      <ul>
+        <li>Schedule 30-minute focused sessions for each item</li>
+        <li>One topic per session (prevents overwhelm)</li>
+        <li>Use same structured format as main session</li>
+        <li>These may require research, consultation, or creative thinking time</li>
+      </ul>
+      
+      <p><strong>Example Session:</strong> "Let's spend 30 minutes researching retirement calculators together and then discuss what we learned."</p>
+    </div>
+
+    <!-- TROUBLESHOOTING -->
+    <h2>Troubleshooting Common Challenges</h2>
+
+    <div class="card">
+      <div class="card-title">❌ Problem: One partner dominates the conversation</div>
+      <p><strong>Solution:</strong> Use a timer. Each person gets equal, uninterrupted time. The listener's only job during their partner's time is to listen and reflect back.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">❌ Problem: We keep going in circles on the same issue</div>
+      <p><strong>Solution:</strong> This is a Parking Lot item. Write it down, schedule a dedicated session for it, and move on. You may need outside perspective or more information.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">❌ Problem: Emotions are running too high</div>
+      <p><strong>Solution:</strong> Take a break immediately. Walk separately for 15 minutes. Come back when regulated. If it happens repeatedly on the same topic, this may require professional help.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">❌ Problem: We can't agree on a major issue</div>
+      <p><strong>Solution:</strong> First, identify if it's truly a dealbreaker or a strong preference. If dealbreaker vs. dealbreaker, acknowledge this honestly and consider whether you need couples therapy. Many "dealbreakers" soften when underlying needs are understood.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">❌ Problem: We're exhausted and want to quit</div>
+      <p><strong>Solution:</strong> This is normal! Did you take your halftime break? If yes, you can end here and schedule a continuation session within 3 days. Don't push through exhaustion—it leads to poor decisions.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">❌ Problem: One person feels like they're always compromising</div>
+      <p><strong>Solution:</strong> This is a serious pattern. Track who "won" on each decision. Healthy relationships have balance over time. If pattern persists, couples therapy can help address power dynamics.</p>
+    </div>
+
+    <!-- SUMMARY CHECKLIST -->
+    <h2>Session Completion Checklist</h2>
+    
+    <div class="checklist" style="background: #f0fff4; border-color: #48bb78;">
+      <h3>Before you consider this session complete:</h3>
+      <ul>
+        <li>We celebrated our areas of strong alignment</li>
+        <li>We discussed our Yellow flag (moderate difference) areas</li>
+        <li>We addressed our Red flag (high conflict) areas or scheduled follow-up</li>
+        <li>We selected 3 genuine couple goals for the next year</li>
+        <li>We defined first action steps for each goal</li>
+        <li>We scheduled our next 3 monthly Board Meetings (IN THE CALENDAR)</li>
+        <li>We identified what support we need from each other</li>
+        <li>We expressed appreciation to each other</li>
+        <li>We documented our Parking Lot items and scheduled follow-ups</li>
+        <li>We agreed on one small action to take together in the next 24 hours</li>
+      </ul>
+    </div>
+
+    <!-- QUARTERLY CHECK-IN -->
+    <h2>Quarterly Check-In Template</h2>
+    
+    <p style="margin-bottom: 20px;">Use this shortened format every 3 months for deeper reviews (15 min per partner, 45 min total):</p>
+
+    <div class="card">
+      <div class="card-title">A. Goal Progress Check</div>
+      <p>For each active goal:</p>
+      <ul>
+        <li>☐ On track</li>
+        <li>☐ Slightly behind</li>
+        <li>☐ Significantly behind</li>
+        <li>☐ Ahead of schedule</li>
+      </ul>
+      <p><strong>Questions:</strong></p>
+      <ul>
+        <li>What's helping progress?</li>
+        <li>What's blocking progress?</li>
+        <li>Do we need to adjust the goal or the approach?</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">B. Relationship Temperature</div>
+      <ul>
+        <li>Rate relationship satisfaction (1-10)</li>
+        <li>What's the best thing that happened between us this quarter?</li>
+        <li>What's been the biggest challenge?</li>
+        <li>Do we need a deeper conversation about anything?</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">C. Decision</div>
+      <ul>
+        <li>☐ Continue as-is</li>
+        <li>☐ Make minor adjustments</li>
+        <li>☐ Pivot significantly</li>
+        <li>☐ Add/remove a goal</li>
+        <li>☐ Schedule full annual review if needed</li>
+      </ul>
+    </div>
+
+    <!-- WHEN TO SEEK HELP -->
+    <h2>When to Seek Professional Help</h2>
+
+    <div class="warning-box">
+      <strong>Consider couples therapy if:</strong>
+      <ul>
+        <li>You can't get through this session without frequent escalation</li>
+        <li>One partner shows contempt, stonewalling, or chronic defensiveness</li>
+        <li>There are fundamental disagreements on children, fidelity, or finances</li>
+        <li>One partner feels consistently unheard or invalidated</li>
+        <li>You've had the same argument for months/years with no resolution</li>
+        <li>There's been infidelity, betrayal, or broken trust</li>
+        <li>You're considering separation but want to try first</li>
+        <li>Mental health issues are affecting the relationship</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Finding the Right Help:</div>
+      <ul>
+        <li><strong>Couples therapist:</strong> Gottman-trained or Emotionally Focused Therapy (EFT) are evidence-based</li>
+        <li><strong>Financial therapist:</strong> For money conflicts (find via Financial Therapy Association)</li>
+        <li><strong>Career counselor:</strong> For work-life balance or career transition issues</li>
+        <li><strong>Religious/spiritual advisor:</strong> For faith-based guidance if that's your framework</li>
+      </ul>
+      <p><strong>Remember:</strong> Seeking help is a sign of strength and commitment, not failure.</p>
+    </div>
+
+    <!-- RESOURCES -->
+    <h2>Additional Resources</h2>
+
+    <div class="card">
+      <div class="card-title">📚 Recommended Reading:</div>
+      <ul>
+        <li><strong>"The Seven Principles for Making Marriage Work"</strong> by John Gottman</li>
+        <li><strong>"Hold Me Tight"</strong> by Sue Johnson (EFT approach)</li>
+        <li><strong>"The 5 Love Languages"</strong> by Gary Chapman</li>
+        <li><strong>"Attached"</strong> by Amir Levine (Attachment Theory)</li>
+        <li><strong>"The Financial Wisdom of Ebenezer Scrooge"</strong> by Brad Klontz (money psychology)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🛠️ Tools:</div>
+      <ul>
+        <li><strong>Gottman Card Decks App:</strong> Conversation starters for couples</li>
+        <li><strong>Paired App:</strong> Daily relationship questions</li>
+        <li><strong>Mint / YNAB:</strong> Budget tracking and financial alignment</li>
+        <li><strong>Prepare/Enrich:</strong> Professional relationship assessment</li>
+      </ul>
+    </div>
+
+    <!-- FINAL NOTES -->
+    <h2>Final Thoughts</h2>
+
+    <div class="alert-success" style="padding: 25px;">
+      <h3 style="margin-top: 0; color: #48bb78;">The Work of Partnership</h3>
+      <p>Completing this planning session is significant work. Most couples never do this level of intentional planning and alignment. By doing this, you're:</p>
+      <ul>
+        <li>✅ Investing in your relationship proactively, not just reacting to problems</li>
+        <li>✅ Building a shared vision instead of hoping you're on the same page</li>
+        <li>✅ Creating accountability structures that research shows increase success</li>
+        <li>✅ Modeling healthy relationship practices</li>
+      </ul>
+      <p><strong>Remember:</strong></p>
+      <ul>
+        <li>Differences don't mean incompatibility—they mean you're two different people</li>
+        <li>Conflict isn't failure—it's an opportunity to understand each other better</li>
+        <li>Goals can change—flexibility is healthy</li>
+        <li>You're on the same team, even when you disagree</li>
+      </ul>
+    </div>
+
+    <div style="text-align: center; margin: 50px 0; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
+      <h2 style="color: white; margin-bottom: 15px;">You've Got This</h2>
+      <p style="font-size: 18px; margin: 0;">The fact that you're willing to do this work together speaks volumes about your commitment to each other and your relationship.</p>
+    </div>
+
+    <!-- APPENDIX -->
+    <h2>Appendix: Quick Reference Scripts</h2>
+
+    <h3>When You Need to Take a Break:</h3>
+    <div class="script-box">
+      "I'm feeling overwhelmed/emotional right now. Can we take a 15-minute break? I want to give this conversation my best, and I need a few minutes to reset."
+    </div>
+
+    <h3>When You Feel Unheard:</h3>
+    <div class="script-box">
+      "I don't feel like you're hearing what I'm trying to say. Can you reflect back what you heard me say, so I can clarify?"
+    </div>
+
+    <h3>When You're About to Get Defensive:</h3>
+    <div class="script-box">
+      "I notice I'm getting defensive. Let me take a breath and try to hear what you're really saying beneath the words."
+    </div>
+
+    <h3>When You Want to Use Your Veto Card:</h3>
+    <div class="script-box">
+      "I need to use my Veto Card. I can't fully explain why right now, but this plan creates visceral anxiety for me. Can we table this and come back to it in [timeframe]?"
+    </div>
+
+    <h3>When Something Goes to the Parking Lot:</h3>
+    <div class="script-box">
+      "We've been on this topic for 10 minutes and aren't making progress. Let's add it to the Parking Lot and schedule a dedicated session for it. I'm writing it down now."
+    </div>
+
+    <h3>When You Need to Repair After Conflict:</h3>
+    <div class="script-box">
+      "I'm sorry I [specific behavior]. I was feeling [emotion] and I didn't handle it well. What I meant to communicate was [core message]. Can we try this conversation again?"
+    </div>
+
+    <h3>When You Want to Acknowledge Your Partner:</h3>
+    <div class="script-box">
+      "I really appreciate that you [specific action]. It made me feel [specific feeling]. Thank you for that."
+    </div>
+
+    <div style="margin-top: 60px; padding-top: 30px; border-top: 3px solid #667eea; text-align: center; color: #999;">
+      <p><strong>Couples Planning Toolkit - Discussion Guide</strong></p>
+      <p>Created for couples committed to intentional growth and alignment</p>
+      <p style="margin-top: 20px;">Print this guide and keep it handy during your planning session</p>
+    </div>
+
+  </div>
+
+  <script>
+    // Add print functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add ability to check off checklist items when clicked
+      const checklistItems = document.querySelectorAll('.checklist li');
+      checklistItems.forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', function() {
+          if (this.style.textDecoration === 'line-through') {
+            this.style.textDecoration = 'none';
+            this.style.opacity = '1';
+          } else {
+            this.style.textDecoration = 'line-through';
+            this.style.opacity = '0.6';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
