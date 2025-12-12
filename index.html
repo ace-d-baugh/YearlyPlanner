@@ -2471,6 +2471,39 @@
       }
     }
 
+    // Update range slider display value
+    function updateRangeDisplay(input) {
+      const valueSpan = input.nextElementSibling;
+      if (valueSpan && valueSpan.classList.contains('range-value')) {
+        valueSpan.textContent = input.value;
+      }
+      updateProgressBar();
+    }
+
+    // Validate that percentages sum to 100
+    function validatePercentages(groupName) {
+      const inputs = document.querySelectorAll('input[name^="' + groupName + '"]');
+      let total = 0;
+      
+      inputs.forEach(input => {
+        const value = parseInt(input.value) || 0;
+        total += value;
+      });
+      
+      const errorEl = document.getElementById(groupName + '_error');
+      if (errorEl) {
+        if (total !== 100 && total !== 0) {
+          errorEl.textContent = 'Total must equal 100% (currently ' + total + '%)';
+          errorEl.style.color = '#dc3545';
+          errorEl.style.fontWeight = 'bold';
+        } else {
+          errorEl.textContent = '';
+        }
+      }
+      
+      updateProgressBar();
+    }
+
     // Update progress whenever form changes
     document.addEventListener('change', updateProgressBar);
     document.addEventListener('input', updateProgressBar);
