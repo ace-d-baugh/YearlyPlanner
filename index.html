@@ -1979,9 +1979,309 @@
             </div>
 
             <div class="question mandatory">
-              <label><span class="label-tag mandatory">          <div class="section-nav">
-            <button type="button" class="btn-prev" onclick="goToSection('reflection')">← Previous</button>
-            <button type="button" class="btn-next" onclick="goToSection('domain2')">Next: Domain 2 →</button>
+              <label><span class="label-tag mandatory">M</span> Next Steps/Action Items:</label>
+              <textarea name="goal_personal1_1yr_actions" placeholder="What specific actions will you take?"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Timeline/Milestones:</label>
+              <textarea name="goal_personal1_1yr_milestones" placeholder="What are your key milestones?"></textarea>
+            </div>
+          </div>
+
+          <!-- Personal Goal 2 -->
+          <div class="card" style="background: #fff; border: 2px solid #667eea; margin: 20px 0;">
+            <h4 style="margin-top: 0; color: #667eea;">Personal Goal #2 (1-Year)</h4>
+            
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Goal Statement:</label>
+              <textarea name="goal_personal2_1yr_statement" placeholder="What do you want to achieve?"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Why this matters to me:</label>
+              <textarea name="goal_personal2_1yr_why"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Specific Measurable Outcome:</label>
+              <textarea name="goal_personal2_1yr_outcome"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Next Steps/Action Items:</label>
+              <textarea name="goal_personal2_1yr_actions"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Timeline/Milestones:</label>
+              <textarea name="goal_personal2_1yr_milestones"></textarea>
+            </div>
+          </div>
+
+          <!-- Personal Goal 3 -->
+          <div class="card" style="background: #fff; border: 2px solid #667eea; margin: 20px 0;">
+            <h4 style="margin-top: 0; color: #667eea;">Personal Goal #3 (1-Year)</h4>
+            
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Goal Statement:</label>
+              <textarea name="goal_personal3_1yr_statement" placeholder="What do you want to achieve?"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Why this matters to me:</label>
+              <textarea name="goal_personal3_1yr_why"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Specific Measurable Outcome:</label>
+              <textarea name="goal_personal3_1yr_outcome"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Next Steps/Action Items:</label>
+              <textarea name="goal_personal3_1yr_actions"></textarea>
+            </div>
+
+            <div class="question mandatory">
+              <label><span class="label-tag mandatory">M</span> Timeline/Milestones:</label>
+              <textarea name="goal_personal3_1yr_milestones"></textarea>
+            </div>
+          </div>
+
+          <div class="section-nav">
+            <button type="button" class="btn-prev" onclick="goToSection('domain6')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('completion')">Complete Form →</button>
           </div>
         </section>
+
+        <!-- COMPLETION SECTION -->
+        <section id="completion" class="section hidden">
+          <div class="completion-screen">
+            <h2>✓ Planning Session Complete!</h2>
+            <p>Thank you for completing your annual planning questionnaire.</p>
+            <p>Next Steps:</p>
+            <ol style="text-align: left; display: inline-block; margin: 20px 0;">
+              <li>Share your responses with your partner</li>
+              <li>Schedule your joint planning session</li>
+              <li>Export this form for your records</li>
+            </ol>
+            <div class="completion-actions">
+              <button type="button" class="btn-export" onclick="exportJSON()">📥 Export as JSON</button>
+              <button type="button" class="btn-print" onclick="printFilled()">🖨️ Print Form</button>
+              <button type="button" class="btn-export" onclick="resetForm()">🔄 Start Over</button>
+            </div>
+          </div>
+        </section>
+
+      </form>
+    </main>
+  </div>
+
+  <script>
+    // Initialize the form on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProgress();
+      updateProgressBar();
+    });
+
+    // Navigate between sections
+    function goToSection(sectionId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.add('hidden'));
+      
+      // Show the target section
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.remove('hidden');
+        window.scrollTo(0, 0);
+        updateProgressBar();
+      }
+    }
+
+    // Update progress bar based on filled fields
+    function updateProgressBar() {
+      const form = document.getElementById('planningForm');
+      const inputs = form.querySelectorAll('input, textarea');
+      let filled = 0;
+      
+      inputs.forEach(input => {
+        if (input.value.trim() !== '') {
+          filled++;
+        }
+      });
+      
+      const percentage = Math.round((filled / inputs.length) * 100);
+      const progressBar = document.getElementById('progressBar');
+      const progressText = document.getElementById('progressText');
+      
+      progressBar.style.width = percentage + '%';
+      progressText.textContent = percentage + '% Complete';
+    }
+
+    // Save progress to localStorage
+    function saveProgress() {
+      const form = document.getElementById('planningForm');
+      const formData = new FormData(form);
+      const data = {};
+      
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+      
+      localStorage.setItem('planningFormData', JSON.stringify(data));
+      localStorage.setItem('lastSaved', new Date().toLocaleString());
+      
+      // Show confirmation
+      const lastSavedEl = document.getElementById('lastSaved');
+      lastSavedEl.textContent = 'Last saved: ' + new Date().toLocaleString();
+      
+      alert('Progress saved successfully!');
+    }
+
+    // Load progress from localStorage
+    function loadProgress() {
+      const savedData = localStorage.getItem('planningFormData');
+      if (savedData) {
+        const data = JSON.parse(savedData);
+        const form = document.getElementById('planningForm');
+        
+        Object.keys(data).forEach(key => {
+          const field = form.querySelector('[name="' + key + '"]');
+          if (field) {
+            if (field.type === 'radio') {
+              const radio = form.querySelector('[name="' + key + '"][value="' + data[key] + '"]');
+              if (radio) radio.checked = true;
+            } else if (field.type === 'checkbox') {
+              const checkbox = form.querySelector('[name="' + key + '"][value="' + data[key] + '"]');
+              if (checkbox) checkbox.checked = true;
+            } else {
+              field.value = data[key];
+            }
+          }
+        });
+        
+        // Update last saved time
+        const lastSaved = localStorage.getItem('lastSaved');
+        if (lastSaved) {
+          document.getElementById('lastSaved').textContent = 'Last saved: ' + lastSaved;
+        }
+      }
+    }
+
+    // Export form data as JSON
+    function exportJSON() {
+      const form = document.getElementById('planningForm');
+      const formData = new FormData(form);
+      const data = {};
+      
+      formData.forEach((value, key) => {
+        if (data[key]) {
+          // Handle multiple values for same name (checkboxes)
+          if (Array.isArray(data[key])) {
+            data[key].push(value);
+          } else {
+            data[key] = [data[key], value];
+          }
+        } else {
+          data[key] = value;
+        }
+      });
+      
+      const jsonString = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonString], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'planning-form-' + new Date().toISOString().split('T')[0] + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Import form data from JSON
+    function importJSON(file) {
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          const form = document.getElementById('planningForm');
+          
+          Object.keys(data).forEach(key => {
+            const field = form.querySelector('[name="' + key + '"]');
+            if (field) {
+              if (field.type === 'radio') {
+                const radio = form.querySelector('[name="' + key + '"][value="' + data[key] + '"]');
+                if (radio) radio.checked = true;
+              } else if (field.type === 'checkbox') {
+                const values = Array.isArray(data[key]) ? data[key] : [data[key]];
+                values.forEach(val => {
+                  const checkbox = form.querySelector('[name="' + key + '"][value="' + val + '"]');
+                  if (checkbox) checkbox.checked = true;
+                });
+              } else {
+                field.value = data[key];
+              }
+            }
+          });
+          
+          updateProgressBar();
+          alert('Form data imported successfully!');
+        } catch (err) {
+          alert('Error importing file: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // Print filled form
+    function printFilled() {
+      updateProgressBar(); // Ensure progress is updated
+      window.print();
+    }
+
+    // Print blank form (optional - just prints without data)
+    function printBlank() {
+      const form = document.getElementById('planningForm');
+      const formData = new FormData(form);
+      
+      // Clear all form fields
+      const inputs = form.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        if (input.type === 'radio' || input.type === 'checkbox') {
+          input.checked = false;
+        } else {
+          input.value = '';
+        }
+      });
+      
+      updateProgressBar();
+      window.print();
+      
+      // Reload form data after printing
+      loadProgress();
+    }
+
+    // Reset the form
+    function resetForm() {
+      if (confirm('Are you sure you want to reset the entire form? This cannot be undone.')) {
+        localStorage.removeItem('planningFormData');
+        localStorage.removeItem('lastSaved');
+        document.getElementById('planningForm').reset();
+        document.getElementById('lastSaved').textContent = '';
+        updateProgressBar();
+        goToSection('instructions');
+      }
+    }
+
+    // Update progress whenever form changes
+    document.addEventListener('change', updateProgressBar);
+    document.addEventListener('input', updateProgressBar);
+  </script>
+</body>
+</html>
 
