@@ -2197,6 +2197,8 @@
               <button type="button" class="btn-print" onclick="printFilled()">🖨️ Print Completed Form</button>
               <button type="button" class="btn-print" onclick="printBlank()">📄 Print Blank Form</button>
               <button type="button" class="btn-next" onclick="window.open('discussion-guide.html', '_blank')">📋 View Discussion Guide</button>
+              <button type="button" class="btn-prev" onclick="goToSection('goals')">← Back</button>
+              <button type="button" class="btn-export" onclick="clearForm()">🧹 Clear Form & Refresh</button>
             </div>
           </div>
 
@@ -2439,6 +2441,22 @@
         updateProgressBar();
         goToSection('instructions');
       }
+    }
+
+    // Clear form without additional confirmation and refresh the page
+    function clearForm() {
+      // Remove saved data
+      localStorage.removeItem('planningFormData');
+      localStorage.removeItem('lastSaved');
+      // Reset visible form fields
+      const form = document.getElementById('planningForm');
+      if (form) form.reset();
+      // Update UI
+      const lastSavedEl = document.getElementById('lastSaved');
+      if (lastSavedEl) lastSavedEl.textContent = '';
+      updateProgressBar();
+      // Reload page to ensure a fresh state
+      location.reload();
     }
 
     // Update range slider display value
