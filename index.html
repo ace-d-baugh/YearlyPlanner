@@ -138,7 +138,7 @@
       margin: 30px 0 15px 0;
     }
 
-    .domain-intro {
+    .pillar-intro {
       background: #f8f9ff;
       padding: 15px;
       border-left: 4px solid #667eea;
@@ -493,7 +493,7 @@
           <div style="background: #f8f9ff; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
             <h3 style="margin-top: 0;">Welcome to Your Planning Session</h3>
             <p style="margin-bottom: 15px;"><strong>Estimated Time:</strong> 90 minutes</p>
-            <p style="margin-bottom: 15px;"><strong>Purpose:</strong> This questionnaire helps you and your partner assess your current state across six life domains and plan for the next 1-5 years. Complete this individually and privately before your joint session.</p>
+            <p style="margin-bottom: 15px;"><strong>Purpose:</strong> This questionnaire helps you and your partner assess your current state across six life pillars and plan for the next 1-5 years. Complete this individually and privately before your joint session.</p>
             
             <h4 style="margin-top: 20px;">Important Guidelines:</h4>
             <ul style="margin-left: 20px; margin-bottom: 15px;">
@@ -670,16 +670,16 @@
 
           <div class="section-nav">
             <button type="button" class="btn-prev" onclick="goToSection('snapshot')">← Previous</button>
-            <button type="button" class="btn-next" onclick="goToSection('domain1')">Next: Domain 1 →</button>
+            <button type="button" class="btn-next" onclick="goToSection('pillar1')">Next: Pillar 1 →</button>
           </div>
         </section>
 
         <!-- DOMAIN 1: Mental & Emotional Well-being -->
-        <section id="domain1" class="section hidden">
-          <h2>Domain 1: Mental and Emotional Well-being</h2>
+        <section id="pillar1" class="section hidden">
+          <h2>Pillar 1: Mental and Emotional Well-being</h2>
           
-          <div class="domain-intro">
-            This domain covers your emotional health, stress management, mental stimulation, therapy/counseling, anxiety/depression management, life satisfaction, sense of purpose, and emotional fulfillment.
+          <div class="pillar-intro">
+            This pillar covers your emotional health, stress management, mental stimulation, therapy/counseling, anxiety/depression management, life satisfaction, sense of purpose, and emotional fulfillment.
           </div>
 
           <h3>A. Current State (Individual)</h3>
@@ -758,7 +758,7 @@
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> What support do you need in this domain?</label>
+            <label><span class="label-tag mandatory">M</span> What support do you need in this pillar?</label>
             <textarea name="mental_support_needed" placeholder="e.g., therapy, alone time, partner support"></textarea>
           </div>
 
@@ -828,22 +828,22 @@
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> Personal goal for this domain (1-Year):</label>
+            <label><span class="label-tag mandatory">M</span> Personal goal for this pillar (1-Year):</label>
             <textarea name="mental_personal_goal_1yr"></textarea>
           </div>
           
           <div class="question nice-to-have">
-            <label><span class="label-tag nice-to-have">NTH</span> Personal goal for this domain (5-Year):</label>
+            <label><span class="label-tag nice-to-have">NTH</span> Personal goal for this pillar (5-Year):</label>
             <textarea name="mental_personal_goal_5yr"></textarea>
           </div>
           
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> Couple goal for this domain (1-Year):</label>
+            <label><span class="label-tag mandatory">M</span> Couple goal for this pillar (1-Year):</label>
             <textarea name="mental_couple_goal_1yr"></textarea>
           </div>
           
           <div class="question nice-to-have">
-            <label><span class="label-tag nice-to-have">NTH</span> Couple goal for this domain (5-Year):</label>
+            <label><span class="label-tag nice-to-have">NTH</span> Couple goal for this pillar (5-Year):</label>
             <textarea name="mental_couple_goal_5yr"></textarea>
           </div>
           
@@ -870,16 +870,16 @@
 
           <div class="section-nav">
             <button type="button" class="btn-prev" onclick="goToSection('reflection')">← Previous</button>
-            <button type="button" class="btn-next" onclick="goToSection('domain2')">Next: Domain 2 →</button>
+            <button type="button" class="btn-next" onclick="goToSection('pillar2')">Next: Pillar 2 →</button>
           </div>
         </section>
 
         <!-- DOMAIN 2: Physical Health and Fitness -->
-        <section id="domain2" class="section hidden">
-          <h2>Domain 2: Physical Health and Fitness</h2>
+        <section id="pillar2" class="section hidden">
+          <h2>Pillar 2: Physical Health and Fitness</h2>
           
-          <div class="domain-intro">
-            This domain covers exercise, nutrition, sleep, medical care, body image, energy levels, chronic conditions, and overall physical vitality.
+          <div class="pillar-intro">
+            This pillar covers exercise, nutrition, sleep, medical care, body image, energy levels, chronic conditions, and overall physical vitality.
           </div>
 
           <h3>A. Current State (Individual)</h3>
@@ -1037,17 +1037,17 @@
           </div>
 
           <div class="section-nav">
-            <button type="button" class="btn-prev" onclick="goToSection('domain1')">← Previous</button>
-            <button type="button" class="btn-next" onclick="goToSection('domain3')">Next: Domain 3 →</button>
+            <button type="button" class="btn-prev" onclick="goToSection('pillar1')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('pillar3')">Next: Pillar 3 →</button>
           </div>
         </section>
 
         <!-- DOMAIN 3: Professional Life and Career -->
-        <section id="domain3" class="section hidden">
-          <h2>Domain 3: Professional Life and Career</h2>
+        <section id="pillar3" class="section hidden">
+          <h2>Pillar 3: Professional Life and Career</h2>
           
-          <div class="domain-intro">
-            This domain covers career satisfaction, advancement goals, work-life balance, professional development, income expectations, and potential career changes.
+          <div class="pillar-intro">
+            This pillar covers career satisfaction, advancement goals, work-life balance, professional development, income expectations, and potential career changes.
           </div>
 
           <h3>A. Current State (Individual)</h3>
@@ -1199,17 +1199,17 @@
           </div>
 
           <div class="section-nav">
-            <button type="button" class="btn-prev" onclick="goToSection('domain2')">← Previous</button>
-            <button type="button" class="btn-next" onclick="goToSection('domain4')">Next: Domain 4 →</button>
+            <button type="button" class="btn-prev" onclick="goToSection('pillar2')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('pillar4')">Next: Pillar 4 →</button>
           </div>
         </section>
 
         <!-- DOMAIN 4: Financial Life (EXTENDED SECTION) -->
-        <section id="domain4" class="section hidden">
-          <h2>Domain 4: Financial Life and Material Well-being</h2>
+        <section id="pillar4" class="section hidden">
+          <h2>Pillar 4: Financial Life and Material Well-being</h2>
           
-          <div class="domain-intro">
-            This domain covers income, expenses, debt, savings, investments, retirement, financial decision-making, money beliefs, and material lifestyle expectations. <strong>Research shows this is often the most sensitive domain—please answer honestly as misalignment here predicts significant relationship conflict.</strong>
+          <div class="pillar-intro">
+            This pillar covers income, expenses, debt, savings, investments, retirement, financial decision-making, money beliefs, and material lifestyle expectations. <strong>Research shows this is often the most sensitive pillar—please answer honestly as misalignment here predicts significant relationship conflict.</strong>
           </div>
 
           <h3>A. Current Financial Reality</h3>
@@ -1720,17 +1720,17 @@
           </div>
 
           <div class="section-nav">
-            <button type="button" class="btn-prev" onclick="goToSection('domain3')">← Previous</button>
-            <button type="button" class="btn-next" onclick="goToSection('domain5')">Next: Domain 5 →</button>
+            <button type="button" class="btn-prev" onclick="goToSection('pillar3')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('pillar5')">Next: Pillar 5 →</button>
           </div>
         </section>
 
                 <!-- DOMAIN 5: Relationships and Social Life -->
-        <section id="domain5" class="section hidden">
-          <h2>Domain 5: Relationships and Social Life</h2>
+        <section id="pillar5" class="section hidden">
+          <h2>Pillar 5: Relationships and Social Life</h2>
           
-          <div class="domain-intro">
-            This domain covers friendships, family relationships, social activities, time together vs. apart, extended family involvement, and social lifestyle preferences.
+          <div class="pillar-intro">
+            This pillar covers friendships, family relationships, social activities, time together vs. apart, extended family involvement, and social lifestyle preferences.
           </div>
 
           <h3>A. Current State (Individual)</h3>
@@ -1799,12 +1799,12 @@
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> Current pain points in relationships/social domain:</label>
+            <label><span class="label-tag mandatory">M</span> Current pain points in relationships/social pillar:</label>
             <textarea name="social_frustrations"></textarea>
           </div>
 
           <div class="question nice-to-have">
-            <label><span class="label-tag nice-to-have">NTH</span> Recent wins in relationships/social domain:</label>
+            <label><span class="label-tag nice-to-have">NTH</span> Recent wins in relationships/social pillar:</label>
             <textarea name="social_wins"></textarea>
           </div>
 
@@ -1882,22 +1882,22 @@
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> What support do you need from your partner in this domain?</label>
+            <label><span class="label-tag mandatory">M</span> What support do you need from your partner in this pillar?</label>
             <textarea name="social_partner_support"></textarea>
           </div>
 
           <div class="section-nav">
-            <button type="button" class="btn-prev" onclick="goToSection('domain4')">← Previous</button>
-            <button type="button" class="btn-next" onclick="goToSection('domain6')">Next: Domain 6 →</button>
+            <button type="button" class="btn-prev" onclick="goToSection('pillar4')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('pillar6')">Next: Pillar 6 →</button>
           </div>
         </section>
 
         <!-- DOMAIN 6: Spiritual and Intellectual Life -->
-        <section id="domain6" class="section hidden">
-          <h2>Domain 6: Spiritual and Intellectual Life</h2>
+        <section id="pillar6" class="section hidden">
+          <h2>Pillar 6: Spiritual and Intellectual Life</h2>
           
-          <div class="domain-intro">
-            This domain covers religious/spiritual beliefs, personal growth, learning, values, ethics, meaning/purpose, cultural identity, and intellectual engagement.
+          <div class="pillar-intro">
+            This pillar covers religious/spiritual beliefs, personal growth, learning, values, ethics, meaning/purpose, cultural identity, and intellectual engagement.
           </div>
 
           <h3>A. Current State (Individual)</h3>
@@ -1983,12 +1983,12 @@
           </div>
 
           <div class="question nice-to-have">
-            <label><span class="label-tag nice-to-have">NTH</span> Current frustrations in spiritual/intellectual domain:</label>
+            <label><span class="label-tag nice-to-have">NTH</span> Current frustrations in spiritual/intellectual pillar:</label>
             <textarea name="spiritual_frustrations"></textarea>
           </div>
 
           <div class="question nice-to-have">
-            <label><span class="label-tag nice-to-have">NTH</span> Recent wins in spiritual/intellectual domain:</label>
+            <label><span class="label-tag nice-to-have">NTH</span> Recent wins in spiritual/intellectual pillar:</label>
             <textarea name="spiritual_wins"></textarea>
           </div>
 
@@ -2041,7 +2041,7 @@
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> Couple goal for this domain (1-Year):</label>
+            <label><span class="label-tag mandatory">M</span> Couple goal for this pillar (1-Year):</label>
             <textarea name="spiritual_couple_1yr"></textarea>
           </div>
 
@@ -2057,26 +2057,26 @@
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> What support do you need from your partner in this domain?</label>
+            <label><span class="label-tag mandatory">M</span> What support do you need from your partner in this pillar?</label>
             <textarea name="spiritual_partner_support"></textarea>
           </div>
 
           <div class="section-nav">
-            <button type="button" class="btn-prev" onclick="goToSection('domain5')">← Previous</button>
-            <button type="button" class="btn-next" onclick="goToSection('cross_domain')">Next: Integration →</button>
+            <button type="button" class="btn-prev" onclick="goToSection('pillar5')">← Previous</button>
+            <button type="button" class="btn-next" onclick="goToSection('cross_pillar')">Next: Integration →</button>
           </div>
         </section>
 
         <!-- CROSS-DOMAIN INTEGRATION -->
-        <section id="cross_domain" class="section hidden">
-          <h2>Cross-Domain Integration</h2>
+        <section id="cross_pillar" class="section hidden">
+          <h2>Cross-Pillar Integration</h2>
           
-          <div class="domain-intro">
-            These questions help you see how the six domains relate to each other and identify patterns in your priorities and investments.
+          <div class="pillar-intro">
+            These questions help you see how the six pillars relate to each other and identify patterns in your priorities and investments.
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> Rank the six domains in order of current importance to you (1=most important):</label>
+            <label><span class="label-tag mandatory">M</span> Rank the six pillars in order of current importance to you (1=most important):</label>
             <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
               <p style="margin-bottom: 10px; font-size: 14px; color: #666;">Enter numbers 1-6</p>
               <div style="display: grid; gap: 10px;">
@@ -2109,7 +2109,7 @@
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> Rank the six domains in order of where you currently invest the most time/energy (1=most time/energy):</label>
+            <label><span class="label-tag mandatory">M</span> Rank the six pillars in order of where you currently invest the most time/energy (1=most time/energy):</label>
             <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
               <div style="display: grid; gap: 10px;">
                 <div style="display: flex; align-items: center; gap: 10px;">
@@ -2141,7 +2141,7 @@
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> Which domain needs the most improvement in YOUR life?</label>
+            <label><span class="label-tag mandatory">M</span> Which pillar needs the most improvement in YOUR life?</label>
             <div class="radio-group">
               <label><input type="radio" name="needs_improvement_personal" value="mental"> Mental and Emotional</label>
               <label><input type="radio" name="needs_improvement_personal" value="physical"> Physical Health</label>
@@ -2153,7 +2153,7 @@
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> Which domain needs the most improvement in OUR RELATIONSHIP?</label>
+            <label><span class="label-tag mandatory">M</span> Which pillar needs the most improvement in OUR RELATIONSHIP?</label>
             <div class="radio-group">
               <label><input type="radio" name="needs_improvement_couple" value="mental"> Mental and Emotional</label>
               <label><input type="radio" name="needs_improvement_couple" value="physical"> Physical Health</label>
@@ -2165,7 +2165,7 @@
           </div>
 
           <div class="question mandatory">
-            <label><span class="label-tag mandatory">M</span> If you could only make significant progress in ONE domain this year, which would it be?</label>
+            <label><span class="label-tag mandatory">M</span> If you could only make significant progress in ONE pillar this year, which would it be?</label>
             <div class="radio-group">
               <label><input type="radio" name="top_priority" value="mental"> Mental and Emotional</label>
               <label><input type="radio" name="top_priority" value="physical"> Physical Health</label>
@@ -2177,7 +2177,7 @@
           </div>
 
           <div class="question nice-to-have">
-            <label><span class="label-tag nice-to-have">NTH</span> Which domain are you most satisfied with currently?</label>
+            <label><span class="label-tag nice-to-have">NTH</span> Which pillar are you most satisfied with currently?</label>
             <div class="radio-group">
               <label><input type="radio" name="most_satisfied" value="mental"> Mental and Emotional</label>
               <label><input type="radio" name="most_satisfied" value="physical"> Physical Health</label>
@@ -2199,7 +2199,7 @@
           </div>
 
           <div class="section-nav">
-            <button type="button" class="btn-prev" onclick="goToSection('domain6')">← Previous</button>
+            <button type="button" class="btn-prev" onclick="goToSection('pillar6')">← Previous</button>
             <button type="button" class="btn-next" onclick="goToSection('goals')">Next: Goal Synthesis →</button>
           </div>
         </section>
@@ -2208,8 +2208,8 @@
         <section id="goals" class="section hidden">
           <h2>Goal Synthesis & Action Planning</h2>
           
-          <div class="domain-intro">
-            Now that you've reflected on all six domains, it's time to synthesize your insights into concrete, actionable goals. Focus on quality over quantity - it's better to achieve 3 goals than to start 10 and abandon them.
+          <div class="pillar-intro">
+            Now that you've reflected on all six pillars, it's time to synthesize your insights into concrete, actionable goals. Focus on quality over quantity - it's better to achieve 3 goals than to start 10 and abandon them.
           </div>
 
           <div class="alert">
@@ -2974,7 +2974,7 @@
           </div>
 
           <div class="section-nav">
-            <button type="button" class="btn-prev" onclick="goToSection('domain6')">← Previous</button>
+            <button type="button" class="btn-prev" onclick="goToSection('pillar6')">← Previous</button>
             <button type="button" class="btn-next" onclick="goToSection('completion')">Complete Form →</button>
           </div>
         </section>
@@ -3033,13 +3033,13 @@
     const fillableSections = [
       'snapshot',
       'reflection',
-      'domain1',
-      'domain2',
-      'domain3',
-      'domain4',
-      'domain5',
-      'domain6',
-      'cross_domain',
+      'pillar1',
+      'pillar2',
+      'pillar3',
+      'pillar4',
+      'pillar5',
+      'pillar6',
+      'cross_pillar',
       'goals',
       'completion'
     ];
