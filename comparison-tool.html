@@ -217,8 +217,8 @@
       text-transform: uppercase;
     }
 
-    /* Domain Cards */
-    .domain-card {
+    /* Pillar Cards */
+    .pillar-card {
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -226,7 +226,7 @@
       overflow: hidden;
     }
 
-    .domain-header {
+    .pillar-header {
       padding: 20px;
       cursor: pointer;
       display: flex;
@@ -235,23 +235,23 @@
       transition: background 0.3s;
     }
 
-    .domain-header:hover {
+    .pillar-header:hover {
       background: #f8f9ff;
     }
 
-    .domain-header.green {
+    .pillar-header.green {
       border-left: 6px solid #48bb78;
     }
 
-    .domain-header.yellow {
+    .pillar-header.yellow {
       border-left: 6px solid #ffc107;
     }
 
-    .domain-header.red {
+    .pillar-header.red {
       border-left: 6px solid #e53e3e;
     }
 
-    .domain-title {
+    .pillar-title {
       font-size: 20px;
       font-weight: bold;
       color: #333;
@@ -279,13 +279,13 @@
       background: #e53e3e;
     }
 
-    .domain-content {
+    .pillar-content {
       display: none;
       padding: 20px;
       background: #fafafa;
     }
 
-    .domain-content.active {
+    .pillar-content.active {
       display: block;
     }
 
@@ -464,8 +464,8 @@
         <!-- Overview Stats -->
         <div class="alignment-overview" id="overviewStats"></div>
 
-        <!-- Domain Comparisons -->
-        <div id="domainComparisons"></div>
+        <!-- Pillar Comparisons -->
+        <div id="pillarComparisons"></div>
 
         <!-- Recommendations -->
         <div class="recommendations" id="recommendations"></div>
@@ -520,7 +520,7 @@
 
       // Generate comparisons
       generateOverviewStats();
-      generateDomainComparisons();
+      generatePillarComparisons();
       generateRecommendations();
     }
 
@@ -581,9 +581,9 @@
       return { green, yellow, red, overall };
     }
 
-    function generateDomainComparisons() {
-      const container = document.getElementById('domainComparisons');
-      const domains = [
+    function generatePillarComparisons() {
+      const container = document.getElementById('pillarComparisons');
+      const pillars = [
         {
           id: 'snapshot',
           name: 'Relationship Snapshot',
@@ -623,19 +623,19 @@
 
       let html = '';
       
-      domains.forEach(domain => {
-        const alignment = calculateDomainAlignment(domain.fields);
+      pillars.forEach(pillar => {
+        const alignment = calculatePillarAlignment(pillar.fields);
         const badge = alignment.level === 'high' ? 'green' : alignment.level === 'medium' ? 'yellow' : 'red';
         const badgeText = alignment.level === 'high' ? 'Strong Alignment' : alignment.level === 'medium' ? 'Moderate Gap' : 'Needs Discussion';
 
         html += `
-          <div class="domain-card">
-            <div class="domain-header ${badge}" onclick="toggleDomain('${domain.id}')">
-              <div class="domain-title">${domain.name}</div>
+          <div class="pillar-card">
+            <div class="pillar-header ${badge}" onclick="togglePillar('${pillar.id}')">
+              <div class="pillar-title">${pillar.name}</div>
               <span class="alignment-badge ${badge}">${badgeText}</span>
             </div>
-            <div class="domain-content" id="domain-${domain.id}">
-              ${generateDomainComparisons(domain.fields)}
+            <div class="pillar-content" id="pillar-${pillar.id}">
+              ${generatePillarComparisons(pillar.fields)}
             </div>
           </div>
         `;
@@ -644,7 +644,7 @@
       container.innerHTML = html;
     }
 
-    function calculateDomainAlignment(fields) {
+    function calculatePillarAlignment(fields) {
       let totalGap = 0;
       let count = 0;
 
@@ -667,11 +667,11 @@
       return { level, avgGap };
     }
 
-    function generateDomainComparisons(fields) {
+    function generatePillarComparisons(fields) {
       let html = '';
 
       if (!fields || !Array.isArray(fields)) {
-        return '<p style="padding: 20px; text-align: center; color: #999;">No fields defined for this domain</p>';
+        return '<p style="padding: 20px; text-align: center; color: #999;">No fields defined for this pillar</p>';
       }
 
       fields.forEach(field => {
@@ -703,7 +703,7 @@
         `;
       });
 
-      return html || '<p style="padding: 20px; text-align: center; color: #999;">No comparable data in this domain</p>';
+      return html || '<p style="padding: 20px; text-align: center; color: #999;">No comparable data in this pillar</p>';
     }
 
     function compareValues(val1, val2) {
@@ -742,8 +742,8 @@
       return val;
     }
 
-    function toggleDomain(domainId) {
-      const content = document.getElementById(`domain-${domainId}`);
+    function togglePillar(pillarId) {
+      const content = document.getElementById(`pillar-${pillarId}`);
       content.classList.toggle('active');
     }
 
@@ -817,8 +817,8 @@
             body { font-family: Arial, sans-serif; padding: 40px; max-width: 1200px; margin: 0 auto; }
             h1 { color: #667eea; }
             .stat-card { display: inline-block; padding: 20px; margin: 10px; border: 2px solid #ddd; border-radius: 8px; }
-            .domain-card { margin: 20px 0; border: 1px solid #ddd; border-radius: 8px; }
-            .domain-header { background: #f5f5f5; padding: 15px; font-weight: bold; }
+            .pillar-card { margin: 20px 0; border: 1px solid #ddd; border-radius: 8px; }
+            .pillar-header { background: #f5f5f5; padding: 15px; font-weight: bold; }
             .comparison-item { padding: 15px; margin: 10px 0; border-left: 4px solid #ddd; }
             .aligned { border-left-color: #48bb78; background: #f0fff4; }
             .moderate { border-left-color: #ffc107; background: #fff8e1; }
