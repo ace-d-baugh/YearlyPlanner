@@ -690,7 +690,7 @@
         <button onclick="exportJSON()">📥 Export JSON</button>
         <button onclick="document.getElementById('importFile').click()">📤 Import JSON</button>
         <button onclick="printFilled()">🖨️ Print Filled</button>
-        <button onclick="window.open('Yearly Planner.pdf')">📄 Print Blank</button>
+        <button onclick="printBlank()">📄 Print Blank</button>
         <button onclick="window.open('comparison-tool.html', '_blank')">🤝 Compare</button>
       </div>
       <div class="last-saved" id="lastSaved"></div>
@@ -3432,28 +3432,16 @@
       window.print();
     }
 
-    // Print blank form (optional - just prints without data)
+    // Print blank form gives the pdf as a downloadable
     function printBlank() {
-      const form = document.getElementById('planningForm');
-      const formData = new FormData(form);
-      
-      // Clear all form fields
-      const inputs = form.querySelectorAll('input, textarea');
-      inputs.forEach(input => {
-        if (input.type === 'radio' || input.type === 'checkbox') {
-          input.checked = false;
-        } else {
-          input.value = '';
-        }
-      });
-      
-      updateProgressBar();
-      window.print();
-      
-      // Reload form data after printing
-      loadProgress();
+      const link = document.createElement('a');
+      link.href = 'Yearly Planner.pdf';
+      link.download = 'Yearly_Planner.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
-
+    
     // Reset the form
     function resetForm() {
       if (confirm('Are you sure you want to reset the entire form? This cannot be undone.')) {
