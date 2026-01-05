@@ -2327,10 +2327,10 @@
 
           <div class="question mandatory">
             <label><span class="label-tag mandatory">M</span> What do you think YOUR PARTNER'S top 3 core values are?</label>
-            <div style="margin-top: 10px;">
-              <input type="text" name="spiritual_partner_value1" placeholder="Partner's Value 1" style="margin-bottom: 10px;">
-              <input type="text" name="spiritual_partner_value2" placeholder="Partner's Value 2" style="margin-bottom: 10px;">
-              <input type="text" name="spiritual_partner_value3" placeholder="Partner's Value 3">
+            <div style="margin-top: 10px; display: flex; flex-direction: column;">
+              <select name="spiritual_partner_value1" class="value-selector" style="margin-bottom: 10px; padding: 8px;"></select>
+              <select name="spiritual_partner_value2" class="value-selector" style="margin-bottom: 10px; padding: 8px;"></select>
+              <select name="spiritual_partner_value3" class="value-selector" style="padding: 8px;"></select>
             </div>
           </div>
 
@@ -3665,22 +3665,29 @@
     "Success", "Status", "Trustworthiness", "Wealth", "Wisdom"
   ];
 
-  // Find all dropdowns with the class 'value-selector'
   const dropdowns = document.querySelectorAll('.value-selector');
 
-  dropdowns.forEach((select, index) => {
-    // 1. Add a placeholder option
-    const isOptional = index >= 3; // Value 4 and 5 are optional
-    const placeholderText = `Select Value ${index + 1}${isOptional ? ' (Optional)' : ''}`;
+  dropdowns.forEach((select) => {
+    // Determine the label based on the input name
+    const isPartner = select.name.includes('partner');
+    const nameParts = select.name.split('value');
+    const valueNumber = nameParts[nameParts.length - 1]; // Gets the 1, 2, 3, etc.
     
+    // Logic for Optional labels (for the "Your Values" section)
+    const isOptional = !isPartner && (valueNumber > 3);
+    
+    const labelPrefix = isPartner ? "Partner's Value" : "Value";
+    const placeholderText = `Select ${labelPrefix} ${valueNumber}${isOptional ? ' (Optional)' : ''}`;
+
+    // 1. Create Placeholder
     let placeholder = document.createElement('option');
     placeholder.textContent = placeholderText;
     placeholder.value = "";
-    placeholder.disabled = !isOptional; // Force selection on mandatory ones
     placeholder.selected = true;
+    placeholder.disabled = !isOptional; // Mandatory fields can't re-select the placeholder
     select.appendChild(placeholder);
 
-    // 2. Populate the list from the array
+    // 2. Populate options
     coreValues.forEach(val => {
       let option = document.createElement('option');
       option.value = val;
