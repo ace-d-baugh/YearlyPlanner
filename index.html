@@ -2280,12 +2280,14 @@
 
           <div class="question mandatory">
             <label><span class="label-tag mandatory">M</span> What are your core values? (List top 3-5)</label>
-            <div style="margin-top: 10px;">
-              <input type="text" name="spiritual_value1" placeholder="Value 1 (e.g., integrity, family, growth)" style="margin-bottom: 10px;">
-              <input type="text" name="spiritual_value2" placeholder="Value 2" style="margin-bottom: 10px;">
-              <input type="text" name="spiritual_value3" placeholder="Value 3" style="margin-bottom: 10px;">
-              <input type="text" name="spiritual_value4" placeholder="Value 4 (optional)" style="margin-bottom: 10px;">
-              <input type="text" name="spiritual_value5" placeholder="Value 5 (optional)">
+            <div id="values-container" style="margin-top: 10px; display: flex; flex-direction: column;">
+              
+              <select name="spiritual_value1" class="value-selector" style="margin-bottom: 10px; padding: 8px;"></select>
+              <select name="spiritual_value2" class="value-selector" style="margin-bottom: 10px; padding: 8px;"></select>
+              <select name="spiritual_value3" class="value-selector" style="margin-bottom: 10px; padding: 8px;"></select>
+              <select name="spiritual_value4" class="value-selector" style="margin-bottom: 10px; padding: 8px;"></select>
+              <select name="spiritual_value5" class="value-selector" style="padding: 8px;"></select>
+              
             </div>
           </div>
 
@@ -3648,6 +3650,45 @@
         updateProgressBar();
       }
     });
+
+    // Your list of values
+  const coreValues = [
+    "Authenticity", "Achievement", "Adventure", "Authority", "Autonomy", "Balance", 
+    "Beauty", "Boldness", "Compassion", "Challenge", "Citizenship", "Community", 
+    "Competency", "Contribution", "Creativity", "Curiosity", "Determination", 
+    "Fairness", "Faith", "Fame", "Friendships", "Fun", "Growth", "Happiness", 
+    "Honesty", "Humor", "Influence", "Inner Harmony", "Justice", "Kindness", 
+    "Knowledge", "Leadership", "Learning", "Love", "Loyalty", "Meaningful Work", 
+    "Openness", "Optimism", "Peace", "Pleasure", "Poise", "Popularity", 
+    "Recognition", "Religion", "Reputation", "Respect", "Responsibility", 
+    "Security", "Self-Respect", "Service", "Spirituality", "Stability", 
+    "Success", "Status", "Trustworthiness", "Wealth", "Wisdom"
+  ];
+
+  // Find all dropdowns with the class 'value-selector'
+  const dropdowns = document.querySelectorAll('.value-selector');
+
+  dropdowns.forEach((select, index) => {
+    // 1. Add a placeholder option
+    const isOptional = index >= 3; // Value 4 and 5 are optional
+    const placeholderText = `Select Value ${index + 1}${isOptional ? ' (Optional)' : ''}`;
+    
+    let placeholder = document.createElement('option');
+    placeholder.textContent = placeholderText;
+    placeholder.value = "";
+    placeholder.disabled = !isOptional; // Force selection on mandatory ones
+    placeholder.selected = true;
+    select.appendChild(placeholder);
+
+    // 2. Populate the list from the array
+    coreValues.forEach(val => {
+      let option = document.createElement('option');
+      option.value = val;
+      option.textContent = val;
+      select.appendChild(option);
+    });
+  });
+    
   </script>
 </body>
 </html>
